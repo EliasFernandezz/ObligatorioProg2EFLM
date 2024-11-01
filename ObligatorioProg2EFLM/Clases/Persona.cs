@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ObligatorioProg2EFLM.Clases
+﻿namespace ObligatorioProg2EFLM.Clases
 {
     public class Persona
     {
         private string Nombre;
         private string Apellido;
-        private int Cedula;
+        private string Cedula;
 
 
-        public Persona(string nombre, string apellido, int cedula)
+        public Persona(string nombre, string apellido, string cedula)
         {
             this.Nombre = nombre;
             this.Apellido = apellido;

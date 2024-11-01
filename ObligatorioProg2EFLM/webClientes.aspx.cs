@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ObligatorioProg2EFLM
 {
@@ -16,7 +11,14 @@ namespace ObligatorioProg2EFLM
 
         protected void agregarCliente(object sender, EventArgs e)
         {
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            string cedula = txtCedula.Text;
+            string direccion = txtDireccion.Text;
+            int telefono = Convert.ToInt32(txtTelefono.Text);
+            string email = txtEmail.Text;
 
+            BaseDeDatos.agregarCliente(nombre, apellido, cedula, direccion, telefono, email);
         }
     }
 }

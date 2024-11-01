@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ObligatorioProg2EFLM.Clases
+﻿namespace ObligatorioProg2EFLM.Clases
 {
     public class Cliente : Persona
     {
-        private string Direccion;
-        private int Telefono;
-        private string Email;
+        public string Direccion;
+        public int Telefono;
+        public string Email;
 
-        public Cliente(string nombre, string apellido, int cedula, string direccion, int telefono, string email)
+        public Cliente(string nombre, string apellido, string cedula, string direccion, int telefono, string email)
                        : base(nombre, apellido, cedula)
         {
             this.Direccion = direccion;
