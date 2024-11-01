@@ -96,8 +96,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -115,7 +113,6 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -124,6 +121,11 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="webBuscarOrdenes.aspx" />
+    <Content Include="webInicio.aspx" />
+    <Content Include="webPedidos.aspx" />
+    <Content Include="webReporteDeActividad.aspx" />
+    <Content Include="webTecnicos.aspx" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -160,35 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Persona.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,6 +190,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="webBuscarOrdenes.aspx.cs">
+      <DependentUpon>webBuscarOrdenes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webBuscarOrdenes.aspx.designer.cs">
+      <DependentUpon>webBuscarOrdenes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="webClientes.aspx.cs">
       <DependentUpon>webClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,9 +204,38 @@
     <Compile Include="webClientes.aspx.designer.cs">
       <DependentUpon>webClientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="webInicio.aspx.cs">
+      <DependentUpon>webInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webInicio.aspx.designer.cs">
+      <DependentUpon>webInicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webPedidos.aspx.cs">
+      <DependentUpon>webPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webPedidos.aspx.designer.cs">
+      <DependentUpon>webPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webReporteDeActividad.aspx.cs">
+      <DependentUpon>webReporteDeActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webReporteDeActividad.aspx.designer.cs">
+      <DependentUpon>webReporteDeActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webTecnicos.aspx.cs">
+      <DependentUpon>webTecnicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webTecnicos.aspx.designer.cs">
+      <DependentUpon>webTecnicos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

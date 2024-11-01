@@ -1,4 +1,9 @@
-﻿namespace ObligatorioProg2EFLM
+﻿using System;
+using System.Web;
+using System.Web.Optimization;
+using System.Web.Routing;
+
+namespace ObligatorioProg2EFLM
 {
     public class Global : HttpApplication
     {

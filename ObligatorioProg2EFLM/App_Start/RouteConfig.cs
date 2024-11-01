@@ -1,3 +1,6 @@
+using Microsoft.AspNet.FriendlyUrls;
+using System.Web.Routing;
+
 namespace ObligatorioProg2EFLM
 {
     public static class RouteConfig

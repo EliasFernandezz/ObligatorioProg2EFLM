@@ -17,8 +17,6 @@ namespace ObligatorioProg2EFLM
             string direccion = txtDireccion.Text;
             int telefono = Convert.ToInt32(txtTelefono.Text);
             string email = txtEmail.Text;
-
-            BaseDeDatos.agregarCliente(nombre, apellido, cedula, direccion, telefono, email);
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace ObligatorioProg2EFLM
 {
     public partial class Site_Mobile : System.Web.UI.MasterPage

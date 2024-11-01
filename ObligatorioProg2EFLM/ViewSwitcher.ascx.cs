@@ -1,3 +1,8 @@
+using Microsoft.AspNet.FriendlyUrls.Resolvers;
+using System;
+using System.Web;
+using System.Web.Routing;
+
 namespace ObligatorioProg2EFLM
 {
     public partial class ViewSwitcher : System.Web.UI.UserControl
