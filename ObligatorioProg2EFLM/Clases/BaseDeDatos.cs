@@ -6,12 +6,6 @@ namespace ObligatorioProg2EFLM.Clases
     {
         public static List<Cliente> listaClientes = new List<Cliente>();
 
-
-        static BaseDeDatos()
-        {
-            preCargaClientes();
-        }
-
         public static void preCargaClientes()
         {
             Cliente cliente1 = new Cliente("Rogelio", "Paez", "4763296-7", "av.italia", 096245889, "roge@gmail.com");
@@ -29,7 +23,7 @@ namespace ObligatorioProg2EFLM.Clases
             bool excTelefono = false;
             bool excEmail = false;
 
-            for (int i = 0; i <= listaClientes.Count; i++)
+            for (int i = 0; i < listaClientes.Count; i++)
             {
                 if (listaClientes[i].getCedula() == cedula)
                 {
