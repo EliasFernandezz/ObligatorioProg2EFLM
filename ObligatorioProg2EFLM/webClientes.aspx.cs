@@ -1,6 +1,7 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Diagnostics;
+using System.Web.UI.WebControls;
 
 namespace ObligatorioProg2EFLM
 {
@@ -11,7 +12,16 @@ namespace ObligatorioProg2EFLM
         {
             if (!IsPostBack)
             {
-                BaseDeDatos.preCargaClientes();
+                if (BaseDeDatos.listaClientes.Count == 0)
+                {
+                    BaseDeDatos.preCargaClientes();
+                }
+
+                lblError.Text = "Alguna de las credenciales es invalida";
+                lblError.Visible = true;
+
+                gvClientes.DataSource = BaseDeDatos.listaClientes;
+                gvClientes.DataBind();
             }
         }
 
@@ -24,71 +34,25 @@ namespace ObligatorioProg2EFLM
             int telefono = 0;
             string email = null;
 
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text) ||
+                string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtEmail.Text))
             {
-                rfvNombre.Text = "* Debe ingresar un nombre";
-                rfvNombre.Visible = true;
+                lblError.Visible = true;
             }
             else
             {
                 nombre = txtNombre.Text;
-            }
-
-            if (string.IsNullOrEmpty(txtApellido.Text))
-            {
-                rfvApellido.Text = "* Debe ingresar un apellido";
-                rfvApellido.Visible = true;
-            }
-            else
-            {
                 apellido = txtApellido.Text;
-            }
-
-            if (string.IsNullOrEmpty(txtCedula.Text))
-            {
-                rfvCedula.Text = "* Debe ingresar una cedula";
-                rfvCedula.Visible = true;
-            }
-            else
-            {
                 cedula = txtCedula.Text;
-            }
-
-            if (string.IsNullOrEmpty(txtDireccion.Text))
-            {
-                rfvDireccion.Text = "* Debe ingresar una direccion";
-                rfvDireccion.Visible = true;
-            }
-            else
-            {
                 direccion = txtDireccion.Text;
-            }
-
-            if (string.IsNullOrEmpty(txtTelefono.Text))
-            {
-                rfvTelefono.Text = "* Debe ingresar un telefono";
-                rfvTelefono.Visible = true;
-            }
-            else
-            {
                 telefono = Convert.ToInt32(txtTelefono.Text);
-            }
-
-            if (string.IsNullOrEmpty(txtEmail.Text))
-            {
-                rfvEmail.Text = "* Debe ingresar un email";
-                rfvEmail.Visible = true;
-            }
-            else
-            {
                 email = txtEmail.Text;
-            }
 
 
-            if (nombre == txtNombre.Text && apellido == txtApellido.Text && cedula == txtCedula.Text && direccion == txtDireccion.Text
-                && telefono == Convert.ToInt32(txtTelefono.Text) && email == txtEmail.Text)
-            {
                 BaseDeDatos.agregarCliente(nombre, apellido, cedula, direccion, telefono, email);
+
+                gvClientes.DataSource = BaseDeDatos.listaClientes;
+                gvClientes.DataBind();
 
                 txtNombre.Text = "";
                 txtApellido.Text = "";

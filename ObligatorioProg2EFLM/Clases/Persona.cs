@@ -2,9 +2,9 @@
 {
     public class Persona
     {
-        private string Nombre;
-        private string Apellido;
-        private string Cedula;
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Cedula { get; set; }
 
 
         public Persona(string nombre, string apellido, string cedula)
