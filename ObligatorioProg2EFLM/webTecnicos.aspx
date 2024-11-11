@@ -1,6 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="webTecnicos.aspx.cs" Inherits="ObligatorioProg2EFLM.webTecnicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+        <style>
+        h1{
+            font-size:x-large;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom:25px;
+        }
+    </style>
+
+    <header>
+        <h1>
+            Tecnicos
+        </h1>
+    </header>
+
     <asp:TextBox ID="txtNombre" runat="server" placeholder="Nombre del tecnico"></asp:TextBox>
     <asp:Label ID="lblNombre" runat="server" Text="* Este campo es obligatorio" Font-Size="Small" ForeColor="Blue"></asp:Label>
 
