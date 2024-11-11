@@ -165,7 +165,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\Comentarios.cs" />
+    <Compile Include="Clases\OrdenesDeTrabajo.cs" />
     <Compile Include="Clases\Persona.cs" />
+    <Compile Include="Clases\Tecnico.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

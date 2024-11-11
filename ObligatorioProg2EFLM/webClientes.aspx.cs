@@ -16,12 +16,8 @@ namespace ObligatorioProg2EFLM
                 {
                     BaseDeDatos.preCargaClientes();
                 }
-
-                lblError.Text = "Alguna de las credenciales es invalida";
-                lblError.Visible = true;
-
-                gvClientes.DataSource = BaseDeDatos.listaClientes;
-                gvClientes.DataBind();
+                    gvClientes.DataSource = BaseDeDatos.listaClientes;
+                    gvClientes.DataBind();
             }
         }
 
@@ -34,10 +30,16 @@ namespace ObligatorioProg2EFLM
             int telefono = 0;
             string email = null;
 
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text) ||
-                string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtEmail.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text))
             {
                 lblError.Visible = true;
+
+                txtNombre.Text = "";
+                txtApellido.Text = "";
+                txtCedula.Text = "";
+                txtDireccion.Text = "";
+                txtTelefono.Text = "";
+                txtEmail.Text = "";
             }
             else
             {

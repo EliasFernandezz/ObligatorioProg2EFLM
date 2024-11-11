@@ -5,6 +5,7 @@ namespace ObligatorioProg2EFLM.Clases
     public abstract class BaseDeDatos
     {
         public static List<Cliente> listaClientes = new List<Cliente>();
+        public static List<Tecnico> listaTecnicos = new List<Tecnico>();
 
         public static void preCargaClientes()
         {
@@ -19,35 +20,67 @@ namespace ObligatorioProg2EFLM.Clases
 
         public static void agregarCliente(string nombre, string apellido, string cedula, string direccion, int telefono, string email)
         {
-            bool excCedula = false;
-            bool excTelefono = false;
-            bool excEmail = false;
+            bool cliRepiteCedula = false;
+            bool cliRepiteTelefono = false;
+            bool cliRepiteEmail = false;
 
             for (int i = 0; i < listaClientes.Count; i++)
             {
                 if (listaClientes[i].getCedula() == cedula)
                 {
-                    excCedula = true;
+                    cliRepiteCedula = true;
                     break;
                 }
 
                 if (listaClientes[i].getTelefono() == telefono)
                 {
-                    excTelefono = true;
+                    cliRepiteTelefono = true;
                     break;
                 }
 
                 if (listaClientes[i].getEmail() == email)
                 {
-                    excEmail = true;
+                    cliRepiteEmail = true;
                     break;
                 }
             }
 
-            if (excCedula == false && excTelefono == false && excEmail == false)
+            if (cliRepiteCedula == false && cliRepiteTelefono == false && cliRepiteEmail == false)
             {
                 Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, direccion, telefono, email);
                 listaClientes.Add(nuevoCliente);
+            }
+        }
+
+
+        public static void preCargaTecnicos()
+        {
+            Tecnico tecnico1 = new Tecnico("Mariano", "Fernandez", "1723996-2", "Sanitario");
+            Tecnico tecnico2 = new Tecnico("Federico", "Lamborghini", "8754848-0", "Instalador de aire");
+            Tecnico tecnico3 = new Tecnico("Violeta", "Sechous", "5891546-3", "Albañil");
+
+            listaTecnicos.Add(tecnico1);
+            listaTecnicos.Add(tecnico2);
+            listaTecnicos.Add(tecnico3);
+        }
+
+        public static void agregarTecnico(string nombre, string apellido, string cedula, string especialidad)
+        {
+            bool tecRepiteCedula = false;
+;
+            for (int i = 0; i < listaTecnicos.Count; i++)
+            {
+                if (listaTecnicos[i].getCedula() == cedula)
+                {
+                    tecRepiteCedula = true;
+                    break;
+                }
+            }
+
+            if (tecRepiteCedula == false)
+            {
+                Tecnico nuevoTecnico = new Tecnico(nombre, apellido, cedula, especialidad);
+                listaTecnicos.Add(nuevoTecnico);
             }
         }
     }
