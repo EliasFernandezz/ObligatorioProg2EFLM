@@ -44,20 +44,40 @@ namespace ObligatorioProg2EFLM
             }
             else
             {
-                nombre = txtNombre.Text;
-                apellido = txtApellido.Text;
-                cedula = txtCedula.Text;
-                especialidad = txtEspecialidad.Text;
+                if (string.IsNullOrEmpty(txtNombre.Text) == false && string.IsNullOrEmpty(txtApellido.Text) == false && 
+                    string.IsNullOrEmpty(txtCedula.Text) == false && string.IsNullOrEmpty(txtEspecialidad.Text) == false)
+                {
+                    nombre = txtNombre.Text;
+                    apellido = txtApellido.Text;
+                    cedula = txtCedula.Text;
+                    especialidad = txtEspecialidad.Text;
 
-                BaseDeDatos.agregarTecnico(nombre, apellido, cedula, especialidad);
+                    BaseDeDatos.validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
 
-                gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
-                gvTecnicos.DataBind();
+                    gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
+                    gvTecnicos.DataBind();
 
-                txtNombre.Text = "";
-                txtApellido.Text = "";
-                txtCedula.Text = "";
-                txtEspecialidad.Text = "";
+                    txtNombre.Text = "";
+                    txtApellido.Text = "";
+                    txtCedula.Text = "";
+                    txtEspecialidad.Text = "";
+                }
+                else
+                {
+                    nombre = txtNombre.Text;
+                    apellido = txtApellido.Text;
+                    cedula = txtCedula.Text;
+
+                    BaseDeDatos.validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
+
+                    gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
+                    gvTecnicos.DataBind();
+
+                    txtNombre.Text = "";
+                    txtApellido.Text = "";
+                    txtCedula.Text = "";
+                    txtEspecialidad.Text = "";
+                }
             }
         }
     }

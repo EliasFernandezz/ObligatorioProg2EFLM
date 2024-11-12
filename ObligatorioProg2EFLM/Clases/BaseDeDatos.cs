@@ -7,6 +7,15 @@ namespace ObligatorioProg2EFLM.Clases
         public static List<Cliente> listaClientes = new List<Cliente>();
         public static List<Tecnico> listaTecnicos = new List<Tecnico>();
 
+        public static int? ValidarCedula(string cedula) //validar cedula
+        {
+            if()
+            {
+
+            }
+
+        }
+
         public static void preCargaClientes()
         {
             Cliente cliente1 = new Cliente("Rogelio", "Paez", "4763296-7", "av.italia", 096245889, "roge@gmail.com");
@@ -18,11 +27,13 @@ namespace ObligatorioProg2EFLM.Clases
             listaClientes.Add(cliente3);
         }
 
-        public static void agregarCliente(string nombre, string apellido, string cedula, string direccion, int telefono, string email)
+        public static bool repeticionCliente(string cedula, int? telefono, string email)
         {
             bool cliRepiteCedula = false;
             bool cliRepiteTelefono = false;
             bool cliRepiteEmail = false;
+
+            bool clienteRepetido = false;
 
             for (int i = 0; i < listaClientes.Count; i++)
             {
@@ -47,10 +58,28 @@ namespace ObligatorioProg2EFLM.Clases
 
             if (cliRepiteCedula == false && cliRepiteTelefono == false && cliRepiteEmail == false)
             {
-                Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, direccion, telefono, email);
-                listaClientes.Add(nuevoCliente);
+                clienteRepetido = false;
             }
+            else
+            {
+                clienteRepetido = true;
+            }
+            return clienteRepetido;
         }
+
+
+        /*
+                    Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, direccion, telefono, email);
+                    listaClientes.Add(nuevoCliente);
+        */
+
+        public static void validarYAgregarCliente(string nombre, string apellido, string cedula, string direccion, int? telefono, string email)
+        {
+            bool cliRepetido;
+            cliRepetido = BaseDeDatos.repeticionCliente(cedula, telefono, email);
+
+        }
+
 
 
         public static void preCargaTecnicos()
@@ -64,10 +93,12 @@ namespace ObligatorioProg2EFLM.Clases
             listaTecnicos.Add(tecnico3);
         }
 
-        public static void agregarTecnico(string nombre, string apellido, string cedula, string especialidad)
+        public static bool repeticionTecnico(string cedula)
         {
             bool tecRepiteCedula = false;
-;
+
+            bool tecnicoRepetido = false;
+
             for (int i = 0; i < listaTecnicos.Count; i++)
             {
                 if (listaTecnicos[i].getCedula() == cedula)
@@ -79,9 +110,25 @@ namespace ObligatorioProg2EFLM.Clases
 
             if (tecRepiteCedula == false)
             {
-                Tecnico nuevoTecnico = new Tecnico(nombre, apellido, cedula, especialidad);
-                listaTecnicos.Add(nuevoTecnico);
+                tecnicoRepetido = false;
             }
+            else
+            {
+                tecnicoRepetido = true;
+            }
+            return tecnicoRepetido;
+        }
+
+        /*
+                    Cliente nuevoTecnico = new Tecnico(nombre, apellido, cedula, especialidad);
+                    listaTecnicos.Add(nuevoTecnico);
+        */
+
+        public static void validarYAgregarTecnico(string nombre, string apellido, string cedula, string especialidad)
+        {
+            bool tecRepetido;
+            tecRepetido = BaseDeDatos.repeticionTecnico(cedula);
+
         }
     }
 }

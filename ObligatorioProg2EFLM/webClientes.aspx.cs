@@ -16,8 +16,8 @@ namespace ObligatorioProg2EFLM
                 {
                     BaseDeDatos.preCargaClientes();
                 }
-                    gvClientes.DataSource = BaseDeDatos.listaClientes;
-                    gvClientes.DataBind();
+                gvClientes.DataSource = BaseDeDatos.listaClientes;
+                gvClientes.DataBind();
             }
         }
 
@@ -27,7 +27,7 @@ namespace ObligatorioProg2EFLM
             string apellido = null;
             string cedula = null;
             string direccion = null;
-            int telefono = 0;
+            int? telefono = null;
             string email = null;
 
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text))
@@ -43,25 +43,53 @@ namespace ObligatorioProg2EFLM
             }
             else
             {
-                nombre = txtNombre.Text;
-                apellido = txtApellido.Text;
-                cedula = txtCedula.Text;
-                direccion = txtDireccion.Text;
-                telefono = Convert.ToInt32(txtTelefono.Text);
-                email = txtEmail.Text;
+                if (string.IsNullOrEmpty(txtNombre.Text) == false && string.IsNullOrEmpty(txtApellido.Text) == false &&
+                   string.IsNullOrEmpty(txtCedula.Text) == false && string.IsNullOrEmpty(txtDireccion.Text) == false &&
+                   string.IsNullOrEmpty(txtTelefono.Text) == false && string.IsNullOrEmpty(txtEmail.Text) == false)
+                {
+
+                    lblError.Visible = false;
+
+                    nombre = txtNombre.Text;
+                    apellido = txtApellido.Text;
+                    cedula = txtCedula.Text;
+                    direccion = txtDireccion.Text;
+                    telefono = Convert.ToInt32(txtTelefono.Text);
+                    email = txtEmail.Text;
 
 
-                BaseDeDatos.agregarCliente(nombre, apellido, cedula, direccion, telefono, email);
+                    BaseDeDatos.validarYAgregarCliente(nombre, apellido, cedula, direccion, telefono, email);
 
-                gvClientes.DataSource = BaseDeDatos.listaClientes;
-                gvClientes.DataBind();
+                    gvClientes.DataSource = BaseDeDatos.listaClientes;
+                    gvClientes.DataBind();
 
-                txtNombre.Text = "";
-                txtApellido.Text = "";
-                txtCedula.Text = "";
-                txtDireccion.Text = "";
-                txtTelefono.Text = "";
-                txtEmail.Text = "";
+                    txtNombre.Text = "";
+                    txtApellido.Text = "";
+                    txtCedula.Text = "";
+                    txtDireccion.Text = "";
+                    txtTelefono.Text = "";
+                    txtEmail.Text = "";
+                }
+                else
+                {
+                    lblError.Visible = false;
+
+                    nombre = txtNombre.Text;
+                    apellido = txtApellido.Text;
+                    cedula = txtCedula.Text;
+
+                    BaseDeDatos.validarYAgregarCliente(nombre, apellido, cedula, direccion, telefono, email);
+
+                    gvClientes.DataSource = BaseDeDatos.listaClientes;
+                    gvClientes.DataBind();
+
+                    txtNombre.Text = "";
+                    txtApellido.Text = "";
+                    txtCedula.Text = "";
+                    txtDireccion.Text = "";
+                    txtTelefono.Text = "";
+                    txtEmail.Text = "";
+                }
             }
 
         }

@@ -47,7 +47,7 @@
     <asp:Button ID="btnCliente" runat="server" Text="agregar cliente" OnClick="agregarCliente_click"></asp:Button>
     <br />
     <br />
-    <asp:GridView ID="gvClientes" runat="server" Width="100%" BorderWidth="2" BorderColor="Red">
+    <asp:GridView ID="gvClientes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red">
         <Columns>
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
 
