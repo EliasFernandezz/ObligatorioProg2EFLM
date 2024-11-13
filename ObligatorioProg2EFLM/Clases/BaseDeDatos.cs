@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ObligatorioProg2EFLM.Clases
 {
@@ -7,13 +8,44 @@ namespace ObligatorioProg2EFLM.Clases
         public static List<Cliente> listaClientes = new List<Cliente>();
         public static List<Tecnico> listaTecnicos = new List<Tecnico>();
 
-        public static int? ValidarCedula(string cedula) //validar cedula
+
+        public static bool ValidarCedula(string cedula) //validar cedula
         {
-            if()
+            cedula = cedula.Trim();
+            cedula = cedula.Replace(".", "");
+            cedula = cedula.Replace("-", "");
+
+
+            if (cedula.Length != 8)
             {
-
+                return false;
             }
+            else
+            {
+                List<int> constante = new List<int>();
+                constante.Add(2);
+                constante.Add(9);
+                constante.Add(8);
+                constante.Add(7);
+                constante.Add(6);
+                constante.Add(3);
+                constante.Add(4);
 
+                string numCedula = cedula.Substring(0, 7);
+                int numVerificador = Convert.ToInt32(cedula.Substring(7, 1));
+
+                int suma = 0;
+                for (int i = 0; i < 7; i++)
+                {
+                    suma += Convert.ToInt32(numCedula[i] * constante[i]);
+                    if (numCedula[i] >= 10)
+                    {
+                        numCedula[i] = (numCedula[i]);
+                    }
+                }
+
+                int verificadorCalculado = 10 - (suma % 10);
+            }
         }
 
         public static void preCargaClientes()
