@@ -20,7 +20,7 @@
         public string getApellido() => this.Apellido;
         public void setApellido(string nombre) => this.Nombre = nombre;
 
-        public string getCedula() => Nombre;
+        public string getCedula() => this.Cedula;
         public void setCedula(string nombre) => this.Nombre = nombre;
     }
 }

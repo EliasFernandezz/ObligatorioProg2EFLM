@@ -15,5 +15,6 @@ namespace ObligatorioProg2EFLM.Clases
         }
 
         public string getEspecialidad() => this.Especialidad;
+        public void setEspecialidad(string especialidad) => this.Especialidad = especialidad;
     }
 }

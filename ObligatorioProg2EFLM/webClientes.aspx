@@ -41,13 +41,18 @@
     <asp:TextBox ID="txtEmail" type="email" runat="server" placeholder="Email del cliente"></asp:TextBox>
 
     <br />
-    <asp:Label ID="lblError" runat="server" Text="Alguna de las creedenciales obligatorias no fue ingresada" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
+    <asp:Label ID="lblErrorIngreso" runat="server" Text="Alguna de las creedenciales obligatorias no fue ingresada" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
+    <asp:Label ID="lblErrorValidacion" runat="server" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
     <br />
 
     <asp:Button ID="btnCliente" runat="server" Text="agregar cliente" OnClick="agregarCliente_click"></asp:Button>
     <br />
+
+    <asp:Label ID="lblEdicion" runat="server" Font-Size="Small" Text="Editando..." Visible="false" ForeColor="green"></asp:Label>
+
     <br />
-    <asp:GridView ID="gvClientes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red">
+    <asp:GridView ID="gvClientes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red"
+        OnRowDeleting="borrarCliente" OnRowEditing="editarCliente" OnRowCancelingEdit="cancelarEdicionCliente" OnRowUpdating="actualizarCliente">
         <Columns>
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
 
@@ -60,6 +65,9 @@
             <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
 
             <asp:BoundField DataField="Email" HeaderText="Email" />
+
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="alert-dark" ShowDeleteButton="true" DeleteText="Eliminar" />
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowEditButton="true" EditText="Editar"/>
         </Columns>
     </asp:GridView>
 </asp:Content>

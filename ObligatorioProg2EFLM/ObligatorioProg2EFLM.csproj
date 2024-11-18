@@ -115,7 +115,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -124,6 +123,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="webBuscarOrdenes.aspx" />
     <Content Include="webInicio.aspx" />
+    <Content Include="webLogin.aspx" />
     <Content Include="webPedidos.aspx" />
     <Content Include="webReporteDeActividad.aspx" />
     <Content Include="webTecnicos.aspx" />
@@ -174,20 +174,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Tecnicos.Master.cs">
-      <DependentUpon>Tecnicos.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tecnicos.Master.designer.cs">
-      <DependentUpon>Tecnicos.Master</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,6 +187,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteLogin.Master.cs">
+      <DependentUpon>SiteLogin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteLogin.Master.designer.cs">
+      <DependentUpon>SiteLogin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteTecnicos.Master.cs">
+      <DependentUpon>SiteTecnicos.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteTecnicos.Master.designer.cs">
+      <DependentUpon>SiteTecnicos.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -229,6 +229,13 @@
     </Compile>
     <Compile Include="webInicio.aspx.designer.cs">
       <DependentUpon>webInicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webLogin.aspx.cs">
+      <DependentUpon>webLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webLogin.aspx.designer.cs">
+      <DependentUpon>webLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="webPedidos.aspx.cs">
       <DependentUpon>webPedidos.aspx</DependentUpon>
@@ -282,7 +289,8 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
-    <Content Include="Tecnicos.Master" />
+    <Content Include="SiteTecnicos.Master" />
+    <Content Include="SiteLogin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

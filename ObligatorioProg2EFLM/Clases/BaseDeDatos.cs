@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Caching;
 
 namespace ObligatorioProg2EFLM.Clases
 {
@@ -10,122 +11,7 @@ namespace ObligatorioProg2EFLM.Clases
 
         public static string UsuarioLogeado = "";
 
-        public static void preCargaClientes()
-        {
-            Cliente cliente1 = new Cliente("Rogelio", "Paez", "47632967", "av.italia", 096245889, "roge@gmail.com");
-            Cliente cliente2 = new Cliente("Agusto", "Gomez", "57319249", "calle samuel", 097189425, "agustito50@gmail.com");
-            Cliente cliente3 = new Cliente("Francisco", "Darboux", "47632967", "calle udine", 091085311, "darboux200@gmail.com");
-
-            listaClientes.Add(cliente1);
-            listaClientes.Add(cliente2);
-            listaClientes.Add(cliente3);
-        }
-
-        public static bool repeticionCliente(string cedula, int? telefono, string email)
-        {
-            bool cliRepiteCedula = false;
-            bool cliRepiteTelefono = false;
-            bool cliRepiteEmail = false;
-
-            bool clienteRepetido = false;
-
-            for (int i = 0; i < listaClientes.Count; i++)
-            {
-                if (listaClientes[i].getCedula() == cedula)
-                {
-                    cliRepiteCedula = true;
-                    break;
-                }
-
-                if (listaClientes[i].getTelefono() == telefono)
-                {
-                    cliRepiteTelefono = true;
-                    break;
-                }
-
-                if (listaClientes[i].getEmail() == email)
-                {
-                    cliRepiteEmail = true;
-                    break;
-                }
-            }
-
-            if (cliRepiteCedula == false && cliRepiteTelefono == false && cliRepiteEmail == false)
-            {
-                clienteRepetido = false;
-            }
-            else
-            {
-                clienteRepetido = true;
-            }
-            return clienteRepetido;
-        }
-
-
-        /*
-                    Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, direccion, telefono, email);
-                    listaClientes.Add(nuevoCliente);
-        */
-
-        public static void validarYAgregarCliente(string nombre, string apellido, string cedula, string direccion, int? telefono, string email)
-        {
-            bool cliRepetido;
-            cliRepetido = BaseDeDatos.repeticionCliente(cedula, telefono, email);
-
-        }
-
-
-
-        public static void preCargaTecnicos()
-        {
-            Tecnico tecnico1 = new Tecnico("Mariano", "Fernandez", "17239962", "Sanitario");
-            Tecnico tecnico2 = new Tecnico("Federico", "Lamborghini", "87548480", "Instalador de aire");
-            Tecnico tecnico3 = new Tecnico("Violeta", "Sechous", "58915463", "Albañil");
-
-            listaTecnicos.Add(tecnico1);
-            listaTecnicos.Add(tecnico2);
-            listaTecnicos.Add(tecnico3);
-        }
-
-        public static bool repeticionTecnico(string cedula)
-        {
-            bool tecRepiteCedula = false;
-
-            bool tecnicoRepetido = false;
-
-            for (int i = 0; i < listaTecnicos.Count; i++)
-            {
-                if (listaTecnicos[i].getCedula() == cedula)
-                {
-                    tecRepiteCedula = true;
-                    break;
-                }
-            }
-
-            if (tecRepiteCedula == false)
-            {
-                tecnicoRepetido = false;
-            }
-            else
-            {
-                tecnicoRepetido = true;
-            }
-            return tecnicoRepetido;
-        }
-
-        /*
-                    Cliente nuevoTecnico = new Tecnico(nombre, apellido, cedula, especialidad);
-                    listaTecnicos.Add(nuevoTecnico);
-        */
-
-        public static void validarYAgregarTecnico(string nombre, string apellido, string cedula, string especialidad)
-        {
-            bool tecRepetido;
-            tecRepetido = BaseDeDatos.repeticionTecnico(cedula);
-
-        }
-
-        public static  string GetUsuarioLogeado()
+        public static string GetUsuarioLogeado()
         {
             return UsuarioLogeado;
         }

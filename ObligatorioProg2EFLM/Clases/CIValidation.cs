@@ -8,7 +8,6 @@ namespace ObligatorioProg2EFLM.Clases
     public class CIValidation
     {
        
-
         private static int validation_digit(string ci)
         {
             var a = 0;
