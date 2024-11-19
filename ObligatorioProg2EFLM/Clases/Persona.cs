@@ -18,9 +18,9 @@
         public void setNombre(string nombre) => this.Nombre = nombre;
 
         public string getApellido() => this.Apellido;
-        public void setApellido(string nombre) => this.Nombre = nombre;
+        public void setApellido(string apellido) => this.Apellido = apellido;
 
         public string getCedula() => this.Cedula;
-        public void setCedula(string nombre) => this.Nombre = nombre;
+        public void setCedula(string cedula) => this.Cedula = cedula;
     }
 }

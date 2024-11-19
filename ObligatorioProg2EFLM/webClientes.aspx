@@ -66,7 +66,7 @@
 
             <asp:BoundField DataField="Email" HeaderText="Email" />
 
-            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="alert-dark" ShowDeleteButton="true" DeleteText="Eliminar" />
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowDeleteButton="true" DeleteText="Eliminar" />
             <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowEditButton="true" EditText="Editar"/>
         </Columns>
     </asp:GridView>

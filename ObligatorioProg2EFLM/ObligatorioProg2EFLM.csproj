@@ -165,7 +165,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\BaseDeDatos.cs" />
-    <Compile Include="Clases\CIValidation.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Comentarios.cs" />
     <Compile Include="Clases\OrdenesDeTrabajo.cs" />

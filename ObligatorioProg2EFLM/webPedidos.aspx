@@ -14,5 +14,16 @@
             Pedidos
         </h1>
     </header>
+    <asp:DropDownList runat="server" ID="ClienteAsociado"></asp:DropDownList>
+    <dropdownlist runat="server" ID="TecnicoAsociado"></dropdownlist>
+    <textarea runat="server" ID="DescripcionProblema"></textarea>
+
+    	Número de orden (generado automáticamente, único)
+	Cliente asociado (seleccionar de la lista de clientes)
+	Técnico asignado (seleccionar de la lista de técnicos)
+	Descripción del problema (obligatorio)
+	Fecha de creación (automática)
+	Estado (Pendiente, En Progreso, Completada)
+	Lista de comentarios del técnico (pueden ser múltiples comentarios agregados en diferentes momentos)
 
 </asp:Content>

@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ObligatorioProg2EFLM
 {
     public partial class webClientes : System.Web.UI.Page
     {
-        Cliente cliente1 = new Cliente("Rogelio", "Paez", "4.763.296-7", "av.italia", 096245889, "roge@gmail.com");
-        Cliente cliente2 = new Cliente("Agusto", "Gomez", "5.731.924-0", "calle samuel", 097189425, "agustito50@gmail.com");
-        Cliente cliente3 = new Cliente("Francisco", "Darboux", "5.231.663-5", "calle udine", 091085311, "darboux200@gmail.com");
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +18,11 @@ namespace ObligatorioProg2EFLM
             {
                 if (BaseDeDatos.listaClientes.Count == 0)
                 {
-                    preCargaClientes();
+                    Cliente cliente1 = new Cliente("Rogelio", "Paez", "4.763.296-7", "av.italia", 096245889, "roge@gmail.com");
+                    Cliente cliente2 = new Cliente("Agusto", "Gomez", "5.731.924-0", "calle samuel", 097189425, "agustito50@gmail.com");
+                    Cliente cliente3 = new Cliente("Francisco", "Darboux", "5.231.663-5", "calle udine", 091085311, "darboux200@gmail.com");
+
+                    preCargaClientes(cliente1, cliente2, cliente3);
                 }
                 recargarGvClientes();
             }
@@ -34,7 +36,7 @@ namespace ObligatorioProg2EFLM
             string direccion = null;
             int? telefono = null;
             string email = null;
-            
+
 
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text))
             {
@@ -97,7 +99,7 @@ namespace ObligatorioProg2EFLM
             txtTelefono.Text = "";
             txtEmail.Text = "";
         }
-        public void preCargaClientes()
+        public void preCargaClientes(Cliente cliente1, Cliente cliente2, Cliente cliente3)
         {
             BaseDeDatos.listaClientes.Add(cliente1);
             BaseDeDatos.listaClientes.Add(cliente2);
@@ -224,8 +226,12 @@ namespace ObligatorioProg2EFLM
 
         protected void borrarCliente(object sender, GridViewDeleteEventArgs e)
         {
-            BaseDeDatos.listaClientes.RemoveAt(e.RowIndex);
-            recargarGvClientes();
+
+            if (e.RowIndex >= 0 && e.RowIndex < BaseDeDatos.listaClientes.Count())
+            {
+                BaseDeDatos.listaClientes.RemoveAt(e.RowIndex);
+                recargarGvClientes();
+            }
         }
 
         protected void editarCliente(object sender, GridViewEditEventArgs e)
@@ -246,12 +252,12 @@ namespace ObligatorioProg2EFLM
         {
             GridViewRow fila = gvClientes.Rows[e.RowIndex];
 
-            string nombreActualizado = Convert.ToString(fila.Cells[0].FindControl("txtNombre"));
-            string apellidoActualizado = Convert.ToString(fila.Cells[1].FindControl("txtApellido"));
-            string cedulaActualizada = Convert.ToString(fila.Cells[2].FindControl("txtCedula"));
-            string direccionActualizada = Convert.ToString(fila.Cells[3].FindControl("txtDireccion"));
-            int telefonoActualizado = Convert.ToInt32(fila.Cells[4].FindControl("txtTelefono"));
-            string emailActualizado = Convert.ToString(fila.Cells[5].FindControl("txtEmail"));
+            string nombreActualizado = (fila.Cells[0].Controls[0] as TextBox).Text;
+            string apellidoActualizado = (fila.Cells[1].Controls[0] as TextBox).Text;
+            string cedulaActualizada = (fila.Cells[2].Controls[0] as TextBox).Text;
+            string direccionActualizada = (fila.Cells[3].Controls[0] as TextBox).Text;
+            int telefonoActualizado = Convert.ToInt32((fila.Cells[4].Controls[0] as TextBox).Text);
+            string emailActualizado = (fila.Cells[5].Controls[0] as TextBox).Text;
 
             BaseDeDatos.listaClientes[e.RowIndex].setNombre(nombreActualizado);
             BaseDeDatos.listaClientes[e.RowIndex].setApellido(apellidoActualizado);
@@ -262,6 +268,7 @@ namespace ObligatorioProg2EFLM
 
             gvClientes.EditIndex = -1;
             recargarGvClientes();
+            lblEdicion.Visible = false;
         }
     }
 }

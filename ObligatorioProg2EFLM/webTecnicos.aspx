@@ -2,17 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-        <style>
-        h1{
-            font-size:x-large;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            margin-bottom:25px;
+    <style>
+        h1 {
+            font-size: x-large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: 25px;
         }
     </style>
 
     <header>
-        <h1>
-            Tecnicos
+        <h1>Tecnicos
         </h1>
     </header>
 
@@ -39,12 +38,17 @@
 
     <br />
     <asp:Label ID="lblError" runat="server" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
+    <asp:Label ID="lblErrorValidacion" runat="server" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
     <br />
 
     <asp:Button ID="btnTecnico" runat="server" Text="agregar tecnico" OnClick="agregarTecnico_Click"></asp:Button>
     <br />
+
+    <asp:Label ID="lblEdicion" runat="server" Font-Size="Small" Text="Editando..." Visible="false" ForeColor="green"></asp:Label>
+
     <br />
-    <asp:GridView ID="gvTecnicos" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red">
+    <asp:GridView ID="gvTecnicos" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red"
+        OnRowCancelingEdit="cancelarEdicionTecnico" OnRowDeleting="borrarTecnico" OnRowEditing="editarTecnico" OnRowUpdating="actualizarTecnico">
         <Columns>
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
 
@@ -53,6 +57,9 @@
             <asp:BoundField DataField="Cedula" HeaderText="Cedula" />
 
             <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
+
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowDeleteButton="true" DeleteText="Eliminar" />
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowEditButton="true" EditText="Editar" />
         </Columns>
     </asp:GridView>
 </asp:Content>

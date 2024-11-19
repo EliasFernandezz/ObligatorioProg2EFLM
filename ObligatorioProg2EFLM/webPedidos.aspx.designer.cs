@@ -13,5 +13,32 @@ namespace ObligatorioProg2EFLM
 
     public partial class webPedidos
     {
+
+        /// <summary>
+        /// Control ClienteAsociado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ClienteAsociado;
+
+        /// <summary>
+        /// Control TecnicoAsociado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TecnicoAsociado;
+
+        /// <summary>
+        /// Control DescripcionProblema.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea DescripcionProblema;
     }
 }
