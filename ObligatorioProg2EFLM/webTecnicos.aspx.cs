@@ -1,17 +1,16 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ObligatorioProg2EFLM
 {
     public partial class webTecnicos : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 if (BaseDeDatos.listaTecnicos.Count == 0)
@@ -20,10 +19,18 @@ namespace ObligatorioProg2EFLM
                     Tecnico tecnico2 = new Tecnico("Federico", "Lamborghini", "87548480", "Instalador de aire");
                     Tecnico tecnico3 = new Tecnico("Violeta", "Sechous", "58915463", "Albañil");
                     preCargaTecnicos(tecnico1, tecnico2, tecnico3);
+
                 }
 
                 gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
                 gvTecnicos.DataBind();
+
+                if (BaseDeDatos.GetiTecnicos() == 0)
+                {
+                    int i = 1;
+                    BaseDeDatos.SetiTecnicos(i);
+                    Response.Redirect("webLogin.aspx");
+                }
             }
         }
 

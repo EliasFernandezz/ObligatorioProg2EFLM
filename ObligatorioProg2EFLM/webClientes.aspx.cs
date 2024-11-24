@@ -1,10 +1,8 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.UI.WebControls;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ObligatorioProg2EFLM
 {

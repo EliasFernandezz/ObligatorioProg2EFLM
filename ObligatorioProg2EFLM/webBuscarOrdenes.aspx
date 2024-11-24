@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="webBuscarOrdenes.aspx.cs" Inherits="ObligatorioProg2EFLM.webBuscarOrdenes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteTecnicos.Master" AutoEventWireup="true" CodeBehind="webBuscarOrdenes.aspx.cs" Inherits="ObligatorioProg2EFLM.webBuscarOrdenes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
         <style>
@@ -14,5 +14,5 @@
             Busqueda de órdenes
         </h1>
     </header>
-
+    <asp:Label runat="server">niggaaaaaa</asp:Label>
 </asp:Content>

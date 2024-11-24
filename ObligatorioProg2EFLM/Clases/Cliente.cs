@@ -2,9 +2,9 @@
 {
     public class Cliente : Persona
     {
-        public string Direccion {get; set;}
+        public string Direccion { get; set; }
         public int? Telefono { get; set; }
-        public string Email { get; set;}
+        public string Email { get; set; }
 
         public Cliente(string nombre, string apellido, string cedula, string direccion, int? telefono, string email)
                        : base(nombre, apellido, cedula)

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using ObligatorioProg2EFLM.Clases;
+using System;
 
 namespace ObligatorioProg2EFLM
 {
@@ -13,5 +9,23 @@ namespace ObligatorioProg2EFLM
         {
 
         }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            this.MasterPageFile = "Site.Master";
+
+            foreach (var Tecnico in BaseDeDatos.listaTecnicos)
+            {
+                
+                if (BaseDeDatos.UsuarioLogeado == Tecnico.getCedula())
+                {
+                    this.MasterPageFile = "SiteTecnicos.Master";
+                }
+                
+            }
+
+        }
+
+
     }
 }

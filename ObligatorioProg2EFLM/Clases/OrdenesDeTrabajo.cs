@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ObligatorioProg2EFLM.Clases
 {
@@ -15,7 +13,7 @@ namespace ObligatorioProg2EFLM.Clases
         public string Estado;
         public List<Comentarios> ListaComentarios;
 
-        public OrdenesDeTrabajo(int numOrden, Cliente cliAsociado, Tecnico tecAsociado, string descripProblema, 
+        public OrdenesDeTrabajo(int numOrden, Cliente cliAsociado, Tecnico tecAsociado, string descripProblema,
                                 DateTime fechaCreacion, string estado, List<Comentarios> listaComentarios)
         {
             this.NumOrden = numOrden;
