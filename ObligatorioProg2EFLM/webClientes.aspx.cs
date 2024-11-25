@@ -14,14 +14,6 @@ namespace ObligatorioProg2EFLM
         {
             if (!IsPostBack)
             {
-                if (BaseDeDatos.listaClientes.Count == 0)
-                {
-                    Cliente cliente1 = new Cliente("Rogelio", "Paez", "4.763.296-7", "av.italia", 096245889, "roge@gmail.com");
-                    Cliente cliente2 = new Cliente("Agusto", "Gomez", "5.731.924-0", "calle samuel", 097189425, "agustito50@gmail.com");
-                    Cliente cliente3 = new Cliente("Francisco", "Darboux", "5.231.663-5", "calle udine", 091085311, "darboux200@gmail.com");
-
-                    preCargaClientes(cliente1, cliente2, cliente3);
-                }
                 recargarGvClientes();
             }
         }
@@ -97,14 +89,6 @@ namespace ObligatorioProg2EFLM
             txtTelefono.Text = "";
             txtEmail.Text = "";
         }
-        public void preCargaClientes(Cliente cliente1, Cliente cliente2, Cliente cliente3)
-        {
-            BaseDeDatos.listaClientes.Add(cliente1);
-            BaseDeDatos.listaClientes.Add(cliente2);
-            BaseDeDatos.listaClientes.Add(cliente3);
-        }
-
-
 
         public void validarYAgregarCliente(string nombre, string apellido, string cedula, string direccion, int? telefono, string email)
         {

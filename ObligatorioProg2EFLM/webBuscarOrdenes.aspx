@@ -15,4 +15,8 @@
         </h1>
     </header>
     <asp:Label runat="server">niggaaaaaa</asp:Label>
+
+    <asp:GridView runat="server">
+
+    </asp:GridView>
 </asp:Content>

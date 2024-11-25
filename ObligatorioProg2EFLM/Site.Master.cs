@@ -8,14 +8,14 @@ namespace ObligatorioProg2EFLM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             foreach (var Tecnico in BaseDeDatos.listaTecnicos)
             {
-                if (BaseDeDatos.GetUsuarioLogeado() == Tecnico.getCedula())
+                if (BaseDeDatos.UsuarioLogeado == Tecnico.getCedula())
                 {
-                    Response.Redirect("");
+                    Response.Redirect("webBuscarOrdenes.aspx");
                 }
             }
-            //??
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {

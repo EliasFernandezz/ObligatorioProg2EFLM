@@ -13,24 +13,7 @@ namespace ObligatorioProg2EFLM
 
             if (!IsPostBack)
             {
-                if (BaseDeDatos.listaTecnicos.Count == 0)
-                {
-                    Tecnico tecnico1 = new Tecnico("Mariano", "Fernandez", "17239962", "Sanitario");
-                    Tecnico tecnico2 = new Tecnico("Federico", "Lamborghini", "87548480", "Instalador de aire");
-                    Tecnico tecnico3 = new Tecnico("Violeta", "Sechous", "58915463", "Albañil");
-                    preCargaTecnicos(tecnico1, tecnico2, tecnico3);
-
-                }
-
-                gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
-                gvTecnicos.DataBind();
-
-                if (BaseDeDatos.GetiTecnicos() == 0)
-                {
-                    int i = 1;
-                    BaseDeDatos.SetiTecnicos(i);
-                    Response.Redirect("webLogin.aspx");
-                }
+                recargarGvTecnicos();
             }
         }
 
@@ -103,14 +86,6 @@ namespace ObligatorioProg2EFLM
             txtApellido.Text = "";
             txtCedula.Text = "";
             txtEspecialidad.Text = "";
-        }
-
-        public void preCargaTecnicos(Tecnico tecnico1, Tecnico tecnico2, Tecnico tecnico3)
-        {
-
-            BaseDeDatos.listaTecnicos.Add(tecnico1);
-            BaseDeDatos.listaTecnicos.Add(tecnico2);
-            BaseDeDatos.listaTecnicos.Add(tecnico3);
         }
 
         public void validarYAgregarTecnico(string nombre, string apellido, string cedula, string especialidad)

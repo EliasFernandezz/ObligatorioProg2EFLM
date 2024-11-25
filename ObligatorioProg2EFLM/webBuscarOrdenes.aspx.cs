@@ -23,9 +23,6 @@ namespace ObligatorioProg2EFLM
                 }
                 
             }
-
         }
-
-
     }
 }
