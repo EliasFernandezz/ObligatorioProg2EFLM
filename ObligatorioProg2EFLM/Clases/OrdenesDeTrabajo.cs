@@ -14,7 +14,7 @@ namespace ObligatorioProg2EFLM.Clases
         public List<Comentarios> Comentarios { get; set; }
 
         public OrdenesDeTrabajo(int numOrden, string cliAsociado, string tecAsociado, string descripProblema,
-                                DateTime fechaCreacion, string estado, List<Comentarios> listaComentarios)
+                                DateTime fechaCreacion, string estado)
         {
             this.NumOrden = numOrden;
             this.CliAsociado = cliAsociado;
@@ -22,7 +22,12 @@ namespace ObligatorioProg2EFLM.Clases
             this.DescripProblema = descripProblema;
             this.FechaCreacion = fechaCreacion;
             this.Estado = estado;
-            this.Comentarios = listaComentarios;
+            
+            Comentarios = new List<Comentarios>()
+            {
+                
+            };
+            
         }
     }
 }

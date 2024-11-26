@@ -1,4 +1,5 @@
-﻿using ObligatorioProg2EFLM.Clases;
+﻿using Microsoft.Ajax.Utilities;
+using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
@@ -9,7 +10,7 @@ namespace ObligatorioProg2EFLM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) 
+            if (!IsPostBack)
             {
                 foreach (Cliente cliente in BaseDeDatos.listaClientes)
                 {
@@ -31,15 +32,20 @@ namespace ObligatorioProg2EFLM
 
         protected void agregarOrden_Click(object sender, EventArgs e)
         {
-            int numOrden = 1;
-            DateTime fechaCreacion = DateTime.Now;
+
+            //int numOrden = BaseDeDatos.listaOrdenes.Count + 1;
             string clienteSeleccionado = cboClienteAsociado.SelectedValue;
             string tecnicoSeleccionado = cboTecnicoAsociado.SelectedValue;
             string descripcion = txtDescripcionProblema.Value;
             string estado = cboEstado.SelectedValue;
-            List<Comentarios> comentarios = null;
+            
 
-            if(clienteSeleccionado == null || tecnicoSeleccionado == null || estado == null || descripcion == null)
+
+
+
+
+
+            if (cboClienteAsociado.SelectedValue == "" || cboTecnicoAsociado.SelectedValue == "" || cboEstado.SelectedValue == "" || string.IsNullOrEmpty(txtDescripcionProblema.Value) == true)
             {
                 lblErrorIngreso.Visible = true;
                 borrarCampos();
@@ -49,13 +55,29 @@ namespace ObligatorioProg2EFLM
                 lblErrorIngreso.Visible = false;
                 borrarCampos();
 
-
+                OrdenesDeTrabajo nuevaOrden = new OrdenesDeTrabajo(BaseDeDatos.listaOrdenes.Count + 1, clienteSeleccionado, tecnicoSeleccionado, descripcion ,DateTime.Now, estado);
+                BaseDeDatos.listaOrdenes.Add(nuevaOrden);
+                recargarGvOrdenes();
             }
         }
 
         protected void recargarGvOrdenes()
         {
             gvOrdenes.DataSource = BaseDeDatos.listaOrdenes;
+            for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
+            {
+                for(int x = 0; x < BaseDeDatos.listaOrdenes[i].Comentarios.Count; x++)
+                {
+                    if (string.IsNullOrEmpty(BaseDeDatos.listaOrdenes[i].Comentarios[x].getComent()) == true)
+                    {
+                        BaseDeDatos.listaOrdenes[i].Comentarios[x].setComent("");
+                    }
+                }
+            }
+
+            gvOrdenes.Columns[gvOrdenes.Columns.Count -1].Visible = true;
+
+
             gvOrdenes.DataBind();
         }
 

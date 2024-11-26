@@ -13,6 +13,10 @@ namespace ObligatorioProg2EFLM.Clases
         {
             InicializarClientes();
             InicializarTecnicos();
+            listaOrdenes = new List<OrdenesDeTrabajo>
+            {
+
+            };
         }
 
         private static void InicializarClientes()
