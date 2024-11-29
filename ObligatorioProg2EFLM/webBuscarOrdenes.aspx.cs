@@ -1,5 +1,7 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
+using System.Collections.Generic;
+
 
 namespace ObligatorioProg2EFLM
 {
@@ -23,6 +25,14 @@ namespace ObligatorioProg2EFLM
                 }
                 
             }
+        }
+
+        protected void Btn_buscar(object sender, EventArgs e)
+        {
+            int NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
+            gvVerOrdenes.DataSource = new List<OrdenesDeTrabajo> { BaseDeDatos.listaOrdenes[NumBusqueda-1]};
+            gvVerOrdenes.DataBind();
+            gvVerOrdenes.Visible = true;
         }
     }
 }

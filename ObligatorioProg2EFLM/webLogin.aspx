@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteLogin.Master" AutoEventWireup="true" CodeBehind="webLogin.aspx.cs" Inherits="ObligatorioProg2EFLM.webLogin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
             <div align="center">
         <div>
             <asp:Label runat="server" text="LOGIN"></asp:Label>

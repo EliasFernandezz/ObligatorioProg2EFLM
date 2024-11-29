@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace ObligatorioProg2EFLM.Clases
 {
@@ -28,6 +29,10 @@ namespace ObligatorioProg2EFLM.Clases
                 
             };
             
+        }
+        public string getEstado() 
+        {  
+            return this.Estado; 
         }
     }
 }

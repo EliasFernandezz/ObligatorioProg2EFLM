@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ObligatorioProg2EFLM.Clases
 {
@@ -15,7 +16,7 @@ namespace ObligatorioProg2EFLM.Clases
             InicializarTecnicos();
             listaOrdenes = new List<OrdenesDeTrabajo>
             {
-
+                new OrdenesDeTrabajo(1,"4.763.296-7","3.927.191-1","Se me tapó el caño", DateTime.Now,"Pendiente")
             };
         }
 

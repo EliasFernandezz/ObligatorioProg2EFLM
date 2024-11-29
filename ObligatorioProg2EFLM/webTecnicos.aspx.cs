@@ -26,51 +26,27 @@ namespace ObligatorioProg2EFLM
 
             lblError.Visible = true;
 
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCedula.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text) == true || string.IsNullOrEmpty(txtApellido.Text) == true || string.IsNullOrEmpty(txtCedula.Text) == true || string.IsNullOrEmpty(txtEspecialidad.Text) == true)
             {
                 lblError.Visible = true;
 
-                txtNombre.Text = "";
-                txtApellido.Text = "";
-                txtCedula.Text = "";
-                txtEspecialidad.Text = "";
+                vaciarCamposTecnicos();
             }
             else
             {
-                if (string.IsNullOrEmpty(txtNombre.Text) == false && string.IsNullOrEmpty(txtApellido.Text) == false &&
-                    string.IsNullOrEmpty(txtCedula.Text) == false && string.IsNullOrEmpty(txtEspecialidad.Text) == false)
-                {
-                    nombre = txtNombre.Text;
-                    apellido = txtApellido.Text;
-                    cedula = txtCedula.Text;
-                    especialidad = txtEspecialidad.Text;
 
-                    validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
+                nombre = txtNombre.Text;
+                apellido = txtApellido.Text;
+                cedula = txtCedula.Text;
+                especialidad = txtEspecialidad.Text;
 
-                    gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
-                    gvTecnicos.DataBind();
+                validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
 
-                    txtNombre.Text = "";
-                    txtApellido.Text = "";
-                    txtCedula.Text = "";
-                    txtEspecialidad.Text = "";
-                }
-                else
-                {
-                    nombre = txtNombre.Text;
-                    apellido = txtApellido.Text;
-                    cedula = txtCedula.Text;
+                recargarGvTecnicos();
 
-                    validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
+                vaciarCamposTecnicos();
 
-                    gvTecnicos.DataSource = BaseDeDatos.listaTecnicos;
-                    gvTecnicos.DataBind();
 
-                    txtNombre.Text = "";
-                    txtApellido.Text = "";
-                    txtCedula.Text = "";
-                    txtEspecialidad.Text = "";
-                }
             }
         }
 
@@ -80,7 +56,7 @@ namespace ObligatorioProg2EFLM
             gvTecnicos.DataBind();
         }
 
-        protected void vaciarCamposCliente()
+        protected void vaciarCamposTecnicos()
         {
             txtNombre.Text = "";
             txtApellido.Text = "";
