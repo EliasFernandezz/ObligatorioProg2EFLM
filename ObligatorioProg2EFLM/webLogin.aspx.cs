@@ -9,7 +9,7 @@ namespace ObligatorioProg2EFLM
         {
             if (!IsPostBack)
             {
-
+                BaseDeDatos.listaOrdenes[1].SetFechaFinalizada();
             }
         }
         protected void Logearme_Click(object sender, EventArgs e)

@@ -18,7 +18,9 @@ namespace ObligatorioProg2EFLM.Clases
             InicializarTecnicos();
             listaOrdenes = new List<OrdenesDeTrabajo>
             {
-                new OrdenesDeTrabajo(1,"4.763.296-7","3.927.191-1","Se me tapó el caño", DateTime.Now,"Pendiente") //prueba para confirmar el uso correcto de pagina de inicio
+                new OrdenesDeTrabajo(1,"4.763.296-7","3.927.191-1","Se me tapó el caño", DateTime.Now,"Pendiente"),
+                new OrdenesDeTrabajo(2,"4.763.296-7","4.277.703-5","Se me cayó el techo", DateTime.Parse("2024-11-11"),"Completada"),
+                new OrdenesDeTrabajo(3,"4.763.296-7","3.927.191-1","Se me tapó el caño", DateTime.Now,"Pendiente")//prueba para confirmar el uso correcto de pagina de inicio
             };
         }
 

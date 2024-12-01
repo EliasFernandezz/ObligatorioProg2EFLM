@@ -13,6 +13,7 @@ namespace ObligatorioProg2EFLM.Clases
         public DateTime FechaCreacion { get; set; } //automatico
         public string Estado { get; set; }
         public List<Comentarios> Comentarios { get; set; }
+        public DateTime FechaFinalizada { get; set; }
 
         public OrdenesDeTrabajo(int numOrden, string cliAsociado, string tecAsociado, string descripProblema,
                                 DateTime fechaCreacion, string estado)
@@ -24,7 +25,7 @@ namespace ObligatorioProg2EFLM.Clases
             this.FechaCreacion = fechaCreacion;
             this.Estado = estado;
             this.Comentarios = new List<Comentarios>();
-            
+
         }
         public int GetNumOrden() { return this.NumOrden; }
         public void SetNumOrden(int numOrden) { this.NumOrden = numOrden; }
@@ -40,6 +41,8 @@ namespace ObligatorioProg2EFLM.Clases
         public void SetEstado(string estado) { this.Estado = estado; }
         public List<Comentarios> GetComentarios() { return this.Comentarios; }
         public void SetComentarios(List<Comentarios> listaComentarios) { this.Comentarios = listaComentarios; }
+        public DateTime GetFechaFinalizada() { return this.FechaFinalizada; }
+        public void SetFechaFinalizada() {this.FechaFinalizada = DateTime.Now; }
 
 
         public void agregarComentarios(Comentarios comentario)
