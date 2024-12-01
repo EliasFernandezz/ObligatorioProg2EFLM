@@ -19,26 +19,28 @@ namespace ObligatorioProg2EFLM
 
         protected void agregarTecnico_Click(object sender, EventArgs e)
         {
+            lblErrorValidacion.Visible = false;
+            lblErrorIngreso.Visible = false;
+
             string nombre = null;
             string apellido = null;
             string cedula = null;
             string especialidad = null;
 
-            lblError.Visible = true;
-
             if (string.IsNullOrEmpty(txtNombre.Text) == true || string.IsNullOrEmpty(txtApellido.Text) == true || string.IsNullOrEmpty(txtCedula.Text) == true || string.IsNullOrEmpty(txtEspecialidad.Text) == true)
             {
-                lblError.Visible = true;
-
+                lblErrorIngreso.Visible = true;
                 vaciarCamposTecnicos();
             }
             else
             {
-
+                lblErrorIngreso.Visible = false;
                 nombre = txtNombre.Text;
                 apellido = txtApellido.Text;
                 cedula = txtCedula.Text;
                 especialidad = txtEspecialidad.Text;
+
+                cedula = BaseDeDatos.puntosGuionCedula(cedula);
 
                 validarYAgregarTecnico(nombre, apellido, cedula, especialidad);
 
@@ -66,15 +68,16 @@ namespace ObligatorioProg2EFLM
 
         public void validarYAgregarTecnico(string nombre, string apellido, string cedula, string especialidad)
         {
-            bool tecRepetido;
             bool cedulaValida;
+            bool tecRepetido;
+            cedulaValida = BaseDeDatos.validarCedula(cedula);
             tecRepetido = repeticionTecnico(cedula);
-            cedulaValida = validarCedula(cedula);
 
             if (cedulaValida == true && tecRepetido == false)
             {
                 Tecnico nuevoTecnico = new Tecnico(nombre, apellido, cedula, especialidad);
                 BaseDeDatos.listaTecnicos.Add(nuevoTecnico);
+                recargarGvTecnicos();
             }
             else if (cedulaValida == false)
             {
@@ -83,60 +86,10 @@ namespace ObligatorioProg2EFLM
             }
             else if (tecRepetido == true)
             {
-                lblErrorValidacion.Text = "este cliente ya existe (cedula, telefono o email repetido)";
+                lblErrorValidacion.Text = "este tecnico ya existe (cedula, telefono o email repetido)";
                 lblErrorValidacion.Visible = true;
             }
 
-        }
-
-        public bool validarCedula(string cedula)
-        {
-            cedula = cedula.Trim();
-            cedula = cedula.Replace(".", ""); //se quitan los espacios vacios, puntos y guiones de la cedula para que conserve un largo de 8
-            cedula = cedula.Replace("-", "");
-
-            if (cedula.Length != 8)
-            {
-                return false;
-            }
-            else
-            {
-                List<int> constante = new List<int>(); //se crea una lista con los numeros de la constante por los que se multiplica el numero de cedula sin verificador
-                constante.Add(2);
-                constante.Add(9);
-                constante.Add(8);
-                constante.Add(7);
-                constante.Add(6);
-                constante.Add(3);
-                constante.Add(4);
-
-                string numSinVerificador = cedula.Substring(0, 7);
-                int digitoVerificador = Convert.ToInt32(cedula.Substring(7, 1));
-
-                int suma = 0;
-                for (int i = 0; i < 7; i++)
-                {
-                    suma += (Convert.ToInt32(numSinVerificador[i].ToString()) * constante[i]);  //se suman las multiplicaciones de los numeros de la cedula sin verificador y la constante que
-                                                                                                //estan en la misma posicion
-                }
-
-                int digitoCalculado = 10 - (suma % 10);  //se divide la suma total por 10, se toma el resto y a 10 se le resta el resto, el resultado de la resta es el digito verificador
-                if (digitoCalculado == 10)
-                {
-                    digitoCalculado = 0;
-                }
-
-                if (digitoCalculado == digitoVerificador)
-                {
-                    cedula = cedula.Substring(0, 1) + "." + cedula.Substring(1, 3) + "." + cedula.Substring(4, 3) + "-" + digitoVerificador;
-                    return true; // si el digito calculado es igual al del ingreso de la cedula se retorna true
-                }
-                else
-                {
-                    return false; //de lo contrario se retorna false
-                }
-
-            }
         }
 
         public static bool repeticionTecnico(string cedula)

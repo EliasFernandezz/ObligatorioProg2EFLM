@@ -33,7 +33,6 @@ namespace ObligatorioProg2EFLM
         protected void agregarOrden_Click(object sender, EventArgs e)
         {
 
-            //int numOrden = BaseDeDatos.listaOrdenes.Count + 1;
             string clienteSeleccionado = cboClienteAsociado.SelectedValue;
             string tecnicoSeleccionado = cboTecnicoAsociado.SelectedValue;
             string descripcion = txtDescripcionProblema.Value;
@@ -64,6 +63,7 @@ namespace ObligatorioProg2EFLM
         protected void recargarGvOrdenes()
         {
             gvOrdenes.DataSource = BaseDeDatos.listaOrdenes;
+
             for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
             {
                 for(int x = 0; x < BaseDeDatos.listaOrdenes[i].Comentarios.Count; x++)
@@ -76,8 +76,6 @@ namespace ObligatorioProg2EFLM
             }
 
             gvOrdenes.Columns[gvOrdenes.Columns.Count -1].Visible = true;
-
-
             gvOrdenes.DataBind();
         }
 
@@ -87,6 +85,16 @@ namespace ObligatorioProg2EFLM
             cboTecnicoAsociado.SelectedValue = TecnicoNoSeleccionado.Value;
             txtDescripcionProblema.Value = null;
             cboEstado.SelectedValue = EstadoNoSeleccionado.Value;
+        }
+
+        protected void AgregarComentarios(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void verComentarios(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }

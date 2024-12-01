@@ -49,6 +49,7 @@
     <br />
 
     <asp:Label ID="lblEdicion" runat="server" Font-Size="Small" Text="Editando..." Visible="false" ForeColor="green"></asp:Label>
+    <asp:Label ID="lblErrorEdicion" runat="server" Font-Size="Small" Visible="false" ForeColor="red"/>
 
     <br />
     <asp:GridView ID="gvClientes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red"

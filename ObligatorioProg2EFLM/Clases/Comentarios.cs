@@ -12,7 +12,7 @@ namespace ObligatorioProg2EFLM.Clases
             this.Coment = coment;
             this.Ahora = DateTime.Now;
         }
-        public string getComent()=>this.Coment;
+        public string getComent()=> this.Coment;
         public void setComent(string Coment)=>this.Coment = Coment;
     }
 }

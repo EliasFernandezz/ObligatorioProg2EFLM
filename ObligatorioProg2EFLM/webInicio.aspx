@@ -21,7 +21,6 @@
 
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
 
-
         </Columns>
     </asp:GridView>
 

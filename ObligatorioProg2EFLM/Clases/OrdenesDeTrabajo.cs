@@ -23,16 +23,28 @@ namespace ObligatorioProg2EFLM.Clases
             this.DescripProblema = descripProblema;
             this.FechaCreacion = fechaCreacion;
             this.Estado = estado;
-            
-            Comentarios = new List<Comentarios>()
-            {
-                
-            };
+            this.Comentarios = new List<Comentarios>();
             
         }
-        public string getEstado() 
-        {  
-            return this.Estado; 
+        public int GetNumOrden() { return this.NumOrden; }
+        public void SetNumOrden(int numOrden) { this.NumOrden = numOrden; }
+        public string GetCliAsociado() { return this.CliAsociado; }
+        public void SetClienteAsociado(string cliente) { this.CliAsociado = cliente; }
+        public string GetTecnicoAsociado() { return this.TecAsociado; }
+        public void SetTecnicoAsociado(string tencico) { this.TecAsociado = tencico; }
+        public string GetDescripPorblema() { return this.DescripProblema; }
+        public void SetDescripProblema(string descripcion) { this.DescripProblema = descripcion; }
+        public DateTime GetFechaCreacion() { return this.FechaCreacion; }
+        public void SetFechaCreacion(DateTime fecha) { this.FechaCreacion = fecha; }
+        public string GetEstado() { return this.Estado; }
+        public void SetEstado(string estado) { this.Estado = estado; }
+        public List<Comentarios> GetComentarios() { return this.Comentarios; }
+        public void SetComentarios(List<Comentarios> listaComentarios) { this.Comentarios = listaComentarios; }
+
+
+        public void agregarComentarios(Comentarios comentario)
+        {
+            this.Comentarios.Add(comentario);
         }
     }
 }

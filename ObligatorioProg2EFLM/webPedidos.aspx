@@ -56,7 +56,7 @@
     <br />
     <br />
 
-    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red" OnRowDataBound="AgregarComentarios">
+    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red" OnRowCommand="verComentarios">
         <Columns>
             <asp:BoundField DataField="NumOrden" HeaderText="N° de orden" />
 
@@ -69,8 +69,8 @@
             <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de creacion" />
 
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
-            <asp:TemplateField>
 
+            <asp:TemplateField >
                 <ItemTemplate>
                     <asp:ListView runat="server" ID="ListaComentarios">
                         <ItemTemplate> 

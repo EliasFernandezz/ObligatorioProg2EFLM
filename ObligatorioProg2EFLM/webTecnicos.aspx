@@ -16,28 +16,24 @@
     </header>
 
     <asp:TextBox ID="txtNombre" runat="server" placeholder="Nombre del tecnico"></asp:TextBox>
-    <asp:Label ID="lblNombre" runat="server" Text="* Este campo es obligatorio" Font-Size="Small" ForeColor="Blue"></asp:Label>
 
     <br />
     <br />
     <asp:TextBox ID="txtApellido" runat="server" placeholder="Apellido del tecnico"></asp:TextBox>
-    <asp:Label ID="lblApellido" runat="server" Text="* Este campo es obligatorio" Font-Size="Small" ForeColor="Blue"></asp:Label>
 
     <br />
     <br />
     <asp:TextBox ID="txtCedula" runat="server" placeholder="Cedula del tecnico"></asp:TextBox>
-    <asp:Label ID="lblCedula" runat="server" Text="* Este campo es obligatorio" Font-Size="Small" ForeColor="Blue"></asp:Label>
-
-    <br />
-    <br />
-    <asp:TextBox ID="txtDireccion" runat="server" placeholder="Direccion del tecnico"></asp:TextBox>
 
     <br />
     <br />
     <asp:TextBox ID="txtEspecialidad" runat="server" placeholder="Especialidad del tecnico"></asp:TextBox>
 
     <br />
-    <asp:Label ID="lblError" runat="server" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
+    <asp:Label ID="lblObligatorio" runat="server" Text="* Todos los campos son obligatorios" Font-Size="Small" ForeColor="Blue"></asp:Label>
+    <br />
+
+    <asp:Label ID="lblErrorIngreso" runat="server" text="Alguna de las creedenciales no fue ingresada" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
     <asp:Label ID="lblErrorValidacion" runat="server" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
     <br />
 
