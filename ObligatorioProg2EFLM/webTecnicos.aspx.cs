@@ -155,6 +155,7 @@ namespace ObligatorioProg2EFLM
             gvTecnicos.EditIndex = -1;
             recargarGvTecnicos();
             lblEdicion.Visible = false;
+            
         }
     }
 }

@@ -167,6 +167,7 @@
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Comentarios.cs" />
+    <Compile Include="Clases\GVContablidadT.cs" />
     <Compile Include="Clases\OrdenesDeTrabajo.cs" />
     <Compile Include="Clases\Persona.cs" />
     <Compile Include="Clases\Tecnico.cs" />

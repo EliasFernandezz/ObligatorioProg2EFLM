@@ -1,4 +1,5 @@
-﻿using ObligatorioProg2EFLM.Clases;
+﻿using Microsoft.Ajax.Utilities;
+using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
 
@@ -22,19 +23,20 @@ namespace ObligatorioProg2EFLM
                 gvOrdenesCompletas.DataSource = ordenesDeTrabajos;
                 gvOrdenesCompletas.DataBind();
 
-                int pendiente = 0;
-                int EnProgreso = 0;
-                int Completada = 0;
-                List<Array> etosParalaGV = new List<Array>();
+
+                List<GVContablidadT> GVContabilidad = new List<GVContablidadT>();
                 foreach (var Tecnico in BaseDeDatos.listaTecnicos)
                 {
+                    int Pendiente = 0;
+                    int EnProgreso = 0;
+                    int Completada = 0;
                     foreach (var orden in BaseDeDatos.listaOrdenes)
                     {
                         if (Tecnico.getCedula() == orden.GetTecnicoAsociado())
                         {
                             if (orden.GetEstado() == "Pendiente")
                             {
-                                pendiente++;
+                                Pendiente++;
                             }
                             else if (orden.GetEstado() == "En Progreso")
                             {
@@ -48,17 +50,20 @@ namespace ObligatorioProg2EFLM
 
 
                     }
-
                     
 
+                    GVContablidadT ObjetoContabilidad = new GVContablidadT(Tecnico.getCedula(), Pendiente, EnProgreso, Completada);
+                    GVContabilidad.Add(ObjetoContabilidad);
 
                 }
 
+                gvContabilidadxTecnico.DataSource = GVContabilidad;
+                gvContabilidadxTecnico.DataBind();
 
 
 
 
-                
+
             }
         }
     }

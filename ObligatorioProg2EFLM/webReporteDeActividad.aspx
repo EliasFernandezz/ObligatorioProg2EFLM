@@ -15,23 +15,21 @@
         </h1>
     </header>
 
-    Funcionalidades:
-⦁	Resumen por técnico: Mostrar cuántas órdenes ha gestionado cada técnico y cuántas están en cada estado (Pendiente, En Progreso, Completada).
-    <asp:GridView ID="gvContabilidadxTecnico" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Blue">
+    <asp:GridView ID="gvContabilidadxTecnico" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red">
         <Columns>
 
             <asp:BoundField DataField="TecAsociado" HeaderText="Tecnico:" />
 
-            <asp:BoundField DataField="Pendiente" HeaderText="Pendiente:" />
+            <asp:BoundField DataField="OrPendiente" HeaderText="Pendiente:" />
 
-            <asp:BoundField DataField="En Progreso" HeaderText="En Progreso:" />
+            <asp:BoundField DataField="OrEnProgreso" HeaderText="En Progreso:" />
 
-            <asp:BoundField DataField="Completada" HeaderText="Completadas:" />
+            <asp:BoundField DataField="OrCompletada" HeaderText="Completadas:" />
 
         </Columns>
     </asp:GridView>
 
-    <asp:GridView ID="gvOrdenesCompletas" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Blue">
+    <asp:GridView ID="gvOrdenesCompletas" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red">
         <Columns>
 
             <asp:BoundField DataField="Estado" HeaderText="Estado:" />

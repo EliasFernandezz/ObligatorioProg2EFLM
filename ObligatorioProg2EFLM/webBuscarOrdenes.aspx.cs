@@ -9,7 +9,10 @@ namespace ObligatorioProg2EFLM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                
+            }
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -22,6 +25,7 @@ namespace ObligatorioProg2EFLM
                 if (BaseDeDatos.UsuarioLogeado == Tecnico.getCedula())
                 {
                     this.MasterPageFile = "SiteTecnicos.Master";
+                    DivBusqueda.Visible = false;
                 }
                 
             }

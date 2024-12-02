@@ -15,6 +15,15 @@ namespace ObligatorioProg2EFLM
     {
 
         /// <summary>
+        /// Control DivBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBusqueda;
+
+        /// <summary>
         /// Control BusquedaNum.
         /// </summary>
         /// <remarks>

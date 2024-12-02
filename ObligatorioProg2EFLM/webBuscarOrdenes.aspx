@@ -14,7 +14,7 @@
         <h1>Busqueda de órdenes
         </h1>
     </header>
-    <div>
+    <div id="DivBusqueda" runat="server" visible="true">
 
     <asp:Label  runat="server">Ingrese el numero de orden que desea ver</asp:Label>
     <asp:TextBox type="number" ID="BusquedaNum" runat="server" ></asp:TextBox>
