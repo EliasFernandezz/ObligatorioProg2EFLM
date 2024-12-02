@@ -20,11 +20,14 @@
 
             <asp:BoundField DataField="TecAsociado" HeaderText="Tecnico:" />
 
+            <asp:BoundField DataField="OrTotal" HeaderText="Total:"/>
+
             <asp:BoundField DataField="OrPendiente" HeaderText="Pendiente:" />
 
             <asp:BoundField DataField="OrEnProgreso" HeaderText="En Progreso:" />
 
             <asp:BoundField DataField="OrCompletada" HeaderText="Completadas:" />
+
 
         </Columns>
     </asp:GridView>

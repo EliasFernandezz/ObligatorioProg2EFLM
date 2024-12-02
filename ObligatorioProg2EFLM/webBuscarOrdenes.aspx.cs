@@ -9,10 +9,7 @@ namespace ObligatorioProg2EFLM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                
-            }
+
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -21,22 +18,75 @@ namespace ObligatorioProg2EFLM
 
             foreach (var Tecnico in BaseDeDatos.listaTecnicos)
             {
-                
+
                 if (BaseDeDatos.UsuarioLogeado == Tecnico.getCedula())
                 {
                     this.MasterPageFile = "SiteTecnicos.Master";
-                    DivBusqueda.Visible = false;
                 }
-                
+
             }
         }
 
         protected void Btn_buscar(object sender, EventArgs e)
         {
-            int NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
-            gvVerOrdenes.DataSource = new List<OrdenesDeTrabajo> { BaseDeDatos.listaOrdenes[NumBusqueda-1]};
-            gvVerOrdenes.DataBind();
-            gvVerOrdenes.Visible = true;
+
+
+            List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
+            if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "5.594.951-2")
+            {
+
+                int NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
+                foreach (var Orden in OrdenRequerida)
+                {
+                    if (NumBusqueda == Orden.GetNumOrden())
+                    {
+                        OrdenRequerida.Clear();
+                        OrdenRequerida.Add(Orden);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                gvVerOrdenes.DataSource = OrdenRequerida;
+                gvVerOrdenes.DataBind();
+                gvVerOrdenes.Visible = true;
+
+            }
+            else
+            {
+                foreach (var tecnico in BaseDeDatos.listaTecnicos)
+                {
+                    if (tecnico.getCedula() == BaseDeDatos.UsuarioLogeado)
+                    {
+                        foreach (var orden in BaseDeDatos.listaOrdenes)
+                        {
+                            if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado())
+                            {
+                                OrdenRequerida.Add(orden);
+                            }
+                        }
+                    }
+                }
+                int NumBusquedaTec = Convert.ToInt32(BusquedaNum.Text);
+                foreach (var Orden in OrdenRequerida)
+                {
+                    if (NumBusquedaTec == Orden.GetNumOrden())
+                    {
+                        OrdenRequerida.Clear();
+                        OrdenRequerida.Add(Orden);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                gvVerOrdenes.DataSource = OrdenRequerida;
+                gvVerOrdenes.DataBind();
+                gvVerOrdenes.Visible = true;
+            }
+
+
         }
     }
 }

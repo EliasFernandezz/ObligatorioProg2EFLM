@@ -24,12 +24,13 @@ namespace ObligatorioProg2EFLM
                 gvOrdenesCompletas.DataBind();
 
 
-                List<GVContablidadT> GVContabilidad = new List<GVContablidadT>();
+                List<GVContablidadT> CantOrdenesTecnicos = new List<GVContablidadT>();
                 foreach (var Tecnico in BaseDeDatos.listaTecnicos)
                 {
                     int Pendiente = 0;
                     int EnProgreso = 0;
                     int Completada = 0;
+
                     foreach (var orden in BaseDeDatos.listaOrdenes)
                     {
                         if (Tecnico.getCedula() == orden.GetTecnicoAsociado())
@@ -53,11 +54,11 @@ namespace ObligatorioProg2EFLM
                     
 
                     GVContablidadT ObjetoContabilidad = new GVContablidadT(Tecnico.getCedula(), Pendiente, EnProgreso, Completada);
-                    GVContabilidad.Add(ObjetoContabilidad);
+                    CantOrdenesTecnicos.Add(ObjetoContabilidad);
 
                 }
 
-                gvContabilidadxTecnico.DataSource = GVContabilidad;
+                gvContabilidadxTecnico.DataSource = CantOrdenesTecnicos;
                 gvContabilidadxTecnico.DataBind();
 
 
