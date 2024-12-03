@@ -1,12 +1,15 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace ObligatorioProg2EFLM
 {
     public partial class webBuscarOrdenes : System.Web.UI.Page
     {
+        OrdenesDeTrabajo ordenAgregandoComentario;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,7 +35,8 @@ namespace ObligatorioProg2EFLM
 
 
             List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
-            if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "5.594.951-2")
+            if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "53410991" ||
+                BaseDeDatos.UsuarioLogeado == "5.594.951-2" || BaseDeDatos.UsuarioLogeado == "55949512")
             {
 
                 int NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
@@ -84,6 +88,30 @@ namespace ObligatorioProg2EFLM
                 gvVerOrdenes.DataSource = OrdenRequerida;
                 gvVerOrdenes.DataBind();
                 gvVerOrdenes.Visible = true;
+            }
+        }
+
+        protected void clickTextAreaComentario(object sender, CommandEventArgs e)
+        {
+            controlesAgregarComentario.Visible = true;
+            ordenAgregandoComentario = BaseDeDatos.listaOrdenes[Convert.ToInt32(e.CommandArgument)];
+        }
+
+        protected void clickAgregarComentario(object sender, CommandEventArgs e)
+        {
+
+            Comentarios Comentario = new Comentarios(txtComentarioAgregado.Text);
+            ordenAgregandoComentario.agregarComentarios(Comentario);
+
+            for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
+            {
+
+                if (BaseDeDatos.listaOrdenes[i].GetNumOrden() == ordenAgregandoComentario.GetNumOrden())
+                {
+
+                    BaseDeDatos.listaOrdenes[i] = ordenAgregandoComentario;
+                }
+
             }
 
 

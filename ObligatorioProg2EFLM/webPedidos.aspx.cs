@@ -27,6 +27,7 @@ namespace ObligatorioProg2EFLM
                     listItemTecnico.Value = tecnico.getCedula();
                     cboTecnicoAsociado.Items.Add(listItemTecnico);
                 }
+                recargarGvOrdenes();
             }
         }
 
@@ -63,19 +64,6 @@ namespace ObligatorioProg2EFLM
         protected void recargarGvOrdenes()
         {
             gvOrdenes.DataSource = BaseDeDatos.listaOrdenes;
-
-            for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
-            {
-                for(int x = 0; x < BaseDeDatos.listaOrdenes[i].Comentarios.Count; x++)
-                {
-                    if (string.IsNullOrEmpty(BaseDeDatos.listaOrdenes[i].Comentarios[x].getComent()) == true)
-                    {
-                        BaseDeDatos.listaOrdenes[i].Comentarios[x].setComent("");
-                    }
-                }
-            }
-
-            gvOrdenes.Columns[gvOrdenes.Columns.Count -1].Visible = true;
             gvOrdenes.DataBind();
         }
 
@@ -89,12 +77,17 @@ namespace ObligatorioProg2EFLM
 
         protected void AgregarComentarios(object sender, GridViewRowEventArgs e)
         {
-
+            
         }
 
-        protected void verComentarios(object sender, GridViewCommandEventArgs e)
+        protected void clickVerComentarios(object sender, CommandEventArgs e)
         {
+            lblComentarios.Text = $"Comentarios de la orden numero {BaseDeDatos.listaOrdenes[Convert.ToInt32(e.CommandArgument)].GetNumOrden()}";
+            lblComentarios.Visible = true;
 
+            gvComentariosOrden.DataSource = BaseDeDatos.listaOrdenes[Convert.ToInt32(e.CommandArgument)].GetComentarios();
+            gvComentariosOrden.DataBind();
+            gvComentariosOrden.Visible = true;
         }
     }
 }

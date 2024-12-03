@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
             <div align="center">
-        <div>
-            <asp:Label runat="server" text="LOGIN"></asp:Label>
+            <asp:Label runat="server" text="LOGIN"></asp:Label> 
         </div>
         <div>
             <asp:TextBox runat="server" ID="txtCedula" placeholder="Ingrese Cedula"></asp:TextBox>

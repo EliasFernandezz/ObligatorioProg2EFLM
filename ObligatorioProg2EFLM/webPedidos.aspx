@@ -4,7 +4,6 @@
 
     <style>
         h1 {
-            font-size: x-large;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin-bottom: 25px;
         }
@@ -36,7 +35,7 @@
     <br />
 
     <asp:DropDownList runat="server" ID="cboEstado">
-        <asp:ListItem runat="server" ID="EstadoNoSeleccionado" Text="Seleccione un estado"  Value="" Selected="true" />
+        <asp:ListItem runat="server" ID="EstadoNoSeleccionado" Text="Seleccione un estado" Value="" Selected="true" />
         <asp:ListItem runat="server" Text="Pendiente" Value="Pendiente" />
         <asp:ListItem runat="server" Text="En progreso" Value="En progreso" />
         <asp:ListItem runat="server" Text="Completada" Value="Completada" />
@@ -56,7 +55,7 @@
     <br />
     <br />
 
-    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red" OnRowCommand="verComentarios">
+    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red">
         <Columns>
             <asp:BoundField DataField="NumOrden" HeaderText="N° de orden" />
 
@@ -70,15 +69,27 @@
 
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
 
-            <asp:TemplateField >
+            <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:ListView runat="server" ID="ListaComentarios">
-                        <ItemTemplate> 
-                            <asp:Label Text="<%#Eval("Coment") %>""></asp:Label>
-                        </ItemTemplate>
-                    </asp:ListView>
+                    <asp:Button ID="btnVerComentarios" runat="server" Text="Ver comentarios" OnCommand="clickVerComentarios" CommandArgument="<%#Container.DataItemIndex%>" CausesValidation="false" />
                 </ItemTemplate>
             </asp:TemplateField>
+
+        </Columns>
+    </asp:GridView>
+
+    <br />
+    <br />
+
+    <h4>
+        <asp:Label ID="lblComentarios" runat="server" align="center" Visible="false"> </asp:Label>
+    </h4>
+
+    <asp:GridView ID="gvComentariosOrden" runat="server" Visible="false" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red">
+        <Columns>
+            <asp:BoundField DataField="Coment" HeaderText="Comentarios" />
+
+            <asp:BoundField DataField="Ahora" HeaderText="Fecha de creacion" />
         </Columns>
     </asp:GridView>
 </asp:Content>

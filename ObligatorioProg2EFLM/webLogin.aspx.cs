@@ -14,7 +14,8 @@ namespace ObligatorioProg2EFLM
         }
         protected void Logearme_Click(object sender, EventArgs e)
         {
-            if ((txtCedula.Text == "5.341.099-1" && txtContraseña.Text == "5.341.099-1") || (txtCedula.Text == "5.594.951-2" && txtContraseña.Text == "5.594.951-2")) //hacer validacion de cedulas
+            if ((txtCedula.Text == "5.341.099-1" && txtContraseña.Text == "5.341.099-1") || (txtCedula.Text == "53410991" && txtContraseña.Text == "53410991") ||
+                (txtCedula.Text == "5.594.951-2" && txtContraseña.Text == "5.594.951-2") || (txtCedula.Text == "55949512" && txtContraseña.Text == "55949512")) //hacer validacion de cedulas
             {
                 BaseDeDatos.UsuarioLogeado = txtCedula.Text;
                 Response.Redirect("webInicio.aspx");
