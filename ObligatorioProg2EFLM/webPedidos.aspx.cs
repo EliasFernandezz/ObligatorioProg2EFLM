@@ -2,6 +2,7 @@
 using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace ObligatorioProg2EFLM
@@ -74,10 +75,36 @@ namespace ObligatorioProg2EFLM
             txtDescripcionProblema.Value = null;
             cboEstado.SelectedValue = EstadoNoSeleccionado.Value;
         }
-
-        protected void AgregarComentarios(object sender, GridViewRowEventArgs e)
+        protected void clickEditarOrden(object sender, GridViewEditEventArgs e)
         {
-            
+            gvOrdenes.EditIndex = e.NewEditIndex;
+            recargarGvOrdenes();
+        }
+        protected void clickCancelarOrden(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvOrdenes.EditIndex = -1;
+            recargarGvOrdenes();
+        }
+
+        protected void clickBorrarOrden(object sender, GridViewDeleteEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < BaseDeDatos.listaOrdenes.Count())
+            {
+                BaseDeDatos.listaOrdenes.RemoveAt(e.RowIndex);
+                recargarGvOrdenes();
+            }
+        }
+
+        protected void clickActualizarOrden(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow fila = gvOrdenes.Rows[e.RowIndex];
+
+            string estadoActualizado = (fila.Cells[5].Controls[0] as DropDownList).SelectedValue;
+
+            BaseDeDatos.listaOrdenes[e.RowIndex].SetEstado(estadoActualizado);
+
+            gvOrdenes.EditIndex = -1;
+            recargarGvOrdenes();
         }
 
         protected void clickVerComentarios(object sender, CommandEventArgs e)

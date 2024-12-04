@@ -10,8 +10,7 @@
     </style>
 
     <header>
-        <h1>Pedidos
-        </h1>
+        <h1>Ordenes de Trabajo</h1>
     </header>
 
     <asp:DropDownList runat="server" ID="cboClienteAsociado">
@@ -55,7 +54,8 @@
     <br />
     <br />
 
-    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red">
+    <asp:GridView ID="gvOrdenes" runat="server" AutoGenerateColumns="false" Width="100%" BorderWidth="2" BorderColor="Red"
+        OnRowDeleting="clickBorrarOrden" OnRowEditing="clickEditarOrden" OnRowCancelingEdit="clickCancelarOrden" OnRowUpdating="clickActualizarOrden">
         <Columns>
             <asp:BoundField DataField="NumOrden" HeaderText="N° de orden" />
 
@@ -75,6 +75,8 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowEditButton="true" EditText="Editar"/>
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn-danger" ShowDeleteButton="true" DeleteText="Eliminar" />
         </Columns>
     </asp:GridView>
 

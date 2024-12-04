@@ -4,7 +4,6 @@
 
     <style>
         h1 {
-            font-size: x-large;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin-bottom: 25px;
         }
@@ -30,10 +29,10 @@
     <asp:TextBox ID="txtEspecialidad" runat="server" placeholder="Especialidad del tecnico"></asp:TextBox>
 
     <br />
-    <asp:Label ID="lblObligatorio" runat="server" Text="* Todos los campos son obligatorios" Font-Size="Small" ForeColor="Red"></asp:Label>
+    <asp:Label ID="lblObligatorio" runat="server" Text="* Todos los campos son obligatorios" Font-Size="Small" ForeColor="Blue"></asp:Label>
     <br />
 
-    <asp:Label ID="lblErrorIngreso" runat="server" text="Alguna de las creedenciales no fue ingresada" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
+    <asp:Label ID="lblErrorIngreso" runat="server" Text="Alguna de las creedenciales no fue ingresada" Font-Size="Small" Visible="false" ForeColor="red"></asp:Label>
     <asp:Label ID="lblErrorValidacion" runat="server" Font-Size="Small" Visible="false" ForeColor="Red"></asp:Label>
     <br />
 
@@ -41,6 +40,7 @@
     <br />
 
     <asp:Label ID="lblEdicion" runat="server" Font-Size="Small" Text="Editando..." Visible="false" ForeColor="green"></asp:Label>
+    <asp:Label ID="lblErrorEdicion" runat="server" Font-Size="Small" Visible="false" ForeColor="red" />
 
     <br />
     <asp:GridView ID="gvTecnicos" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red"

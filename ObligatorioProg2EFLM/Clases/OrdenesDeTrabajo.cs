@@ -36,7 +36,7 @@ namespace ObligatorioProg2EFLM.Clases
         public string GetDescripPorblema() { return this.DescripProblema; }
         public void SetDescripProblema(string descripcion) { this.DescripProblema = descripcion; }
         public DateTime GetFechaCreacion() { return this.FechaCreacion; }
-        public void SetFechaCreacion(DateTime fecha) { this.FechaCreacion = fecha; }
+        public void SetFechaCreacion(DateTime fechaCre) { this.FechaCreacion = fechaCre; }
         public string GetEstado() { return this.Estado; }
         public void SetEstado(string estado) { this.Estado = estado; }
         public List<Comentarios> GetComentarios() { return this.Comentarios; }

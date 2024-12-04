@@ -95,6 +95,8 @@ namespace ObligatorioProg2EFLM.Clases
 
         public static string puntosGuionCedula(string cedula)
         {
+            cedula = cedula.Trim();
+
             switch (cedula.Length)
             {
                 case 8:

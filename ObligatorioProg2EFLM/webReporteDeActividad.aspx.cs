@@ -13,7 +13,7 @@ namespace ObligatorioProg2EFLM
             {
                 List<OrdenesDeTrabajo> ordenesDeTrabajos = new List<OrdenesDeTrabajo>();
                 DateTime hoy = DateTime.Now;
-                foreach (var Orden in BaseDeDatos.listaOrdenes)
+                foreach (OrdenesDeTrabajo Orden in BaseDeDatos.listaOrdenes)
                 {
                     if (Orden.GetFechaFinalizada() > hoy.AddMonths(-1))
                     {

@@ -1,6 +1,7 @@
 ﻿using ObligatorioProg2EFLM.Clases;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace ObligatorioProg2EFLM
@@ -21,6 +22,7 @@ namespace ObligatorioProg2EFLM
         {
             lblErrorValidacion.Visible = false;
             lblErrorIngreso.Visible = false;
+            lblErrorEdicion.Visible = false;
 
             string nombre = null;
             string apellido = null;
@@ -94,6 +96,8 @@ namespace ObligatorioProg2EFLM
 
         public static bool repeticionTecnico(string cedula)
         {
+            cedula = cedula.Trim();
+
             bool tecRepiteCedula = false;
 
             bool tecnicoRepetido = false;
@@ -118,14 +122,53 @@ namespace ObligatorioProg2EFLM
             return tecnicoRepetido;
         }
 
+        public static bool repeticionTecnicoEdicion(string cedula)
+        {
+            cedula = cedula.Trim();
+
+            bool tecRepiteCedula = false;
+
+            bool tecnicoRepetido = false;
+
+            for (int i = 0; i < BaseDeDatos.listaTecnicos.Count - 1; i++)
+            {
+                if (BaseDeDatos.listaTecnicos[i].getCedula() == cedula)
+                {
+                    tecRepiteCedula = true;
+                    break;
+                }
+            }
+
+            if (tecRepiteCedula == false)
+            {
+                tecnicoRepetido = false;
+            }
+            else
+            {
+                tecnicoRepetido = true;
+            }
+            return tecnicoRepetido;
+        }
+
         protected void borrarTecnico(object sender, GridViewDeleteEventArgs e)
         {
-            BaseDeDatos.listaTecnicos.RemoveAt(e.RowIndex);
-            recargarGvTecnicos();
+            lblErrorValidacion.Visible = false;
+            lblErrorIngreso.Visible = false;
+            lblErrorEdicion.Visible = false;
+
+            if (e.RowIndex >= 0 && e.RowIndex < BaseDeDatos.listaTecnicos.Count())
+            {
+                BaseDeDatos.listaTecnicos.RemoveAt(e.RowIndex);
+                recargarGvTecnicos();
+            }
         }
 
         protected void editarTecnico(object sender, GridViewEditEventArgs e)
         {
+            lblErrorValidacion.Visible = false;
+            lblErrorIngreso.Visible = false;
+            lblErrorEdicion.Visible = false;
+
             gvTecnicos.EditIndex = e.NewEditIndex;
             recargarGvTecnicos();
             lblEdicion.Visible = true;
@@ -133,6 +176,10 @@ namespace ObligatorioProg2EFLM
 
         protected void actualizarTecnico(object sender, GridViewUpdateEventArgs e)
         {
+            lblErrorValidacion.Visible = false;
+            lblErrorIngreso.Visible = false;
+            lblErrorEdicion.Visible = false;
+
             GridViewRow fila = gvTecnicos.Rows[e.RowIndex];
 
             string nombreActualizado = (fila.Cells[0].Controls[0] as TextBox).Text;
@@ -140,22 +187,57 @@ namespace ObligatorioProg2EFLM
             string cedulaActualizada = (fila.Cells[2].Controls[0] as TextBox).Text;
             string especialidadActualizada = (fila.Cells[3].Controls[0] as TextBox).Text;
 
-            BaseDeDatos.listaTecnicos[e.RowIndex].setNombre(nombreActualizado);
-            BaseDeDatos.listaTecnicos[e.RowIndex].setApellido(apellidoActualizado);
-            BaseDeDatos.listaTecnicos[e.RowIndex].setCedula(cedulaActualizada);
-            BaseDeDatos.listaTecnicos[e.RowIndex].setEspecialidad(especialidadActualizada);
+            cedulaActualizada = BaseDeDatos.puntosGuionCedula(cedulaActualizada);
 
-            gvTecnicos.EditIndex = -1;
-            recargarGvTecnicos();
-            lblEdicion.Visible = false;
+            bool cedulaValida = BaseDeDatos.validarCedula(cedulaActualizada);
+            bool tecnicoRepetido = repeticionTecnicoEdicion(cedulaActualizada);
+
+            if (cedulaValida == true && tecnicoRepetido == false)
+            {
+                BaseDeDatos.listaTecnicos[e.RowIndex].setNombre(nombreActualizado);
+                BaseDeDatos.listaTecnicos[e.RowIndex].setApellido(apellidoActualizado);
+                BaseDeDatos.listaTecnicos[e.RowIndex].setCedula(cedulaActualizada);
+                BaseDeDatos.listaTecnicos[e.RowIndex].setEspecialidad(especialidadActualizada);
+
+                gvTecnicos.EditIndex = -1;
+                recargarGvTecnicos();
+                lblEdicion.Visible = false;
+            }
+            else if (cedulaValida == false && tecnicoRepetido == true)
+            {
+                gvTecnicos.EditIndex = -1;
+                recargarGvTecnicos();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "Error: Cedula invalida y tecnico repetido";
+                lblErrorEdicion.Visible = true;
+            }
+            else if(cedulaValida == false)
+            {
+                gvTecnicos.EditIndex = -1;
+                recargarGvTecnicos();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "Cedula invalida";
+                lblErrorEdicion.Visible = true;
+            }
+            else if (tecnicoRepetido == true)
+            {
+                gvTecnicos.EditIndex = -1;
+                recargarGvTecnicos();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "Tecnico Repetido";
+                lblErrorEdicion.Visible = true;
+            }
         }
 
         protected void cancelarEdicionTecnico(object sender, GridViewCancelEditEventArgs e)
         {
+            lblErrorValidacion.Visible = false;
+            lblErrorIngreso.Visible = false;
+            lblErrorEdicion.Visible = false;
+
             gvTecnicos.EditIndex = -1;
             recargarGvTecnicos();
             lblEdicion.Visible = false;
-            
         }
     }
 }

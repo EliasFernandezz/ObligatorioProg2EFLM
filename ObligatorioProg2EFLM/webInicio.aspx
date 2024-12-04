@@ -4,7 +4,6 @@
 
     <style>
         h1 {
-            font-size: x-large;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin-bottom: 25px;
         }

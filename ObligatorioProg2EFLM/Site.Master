@@ -50,7 +50,7 @@
                         <li id="Inicio" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webInicio">Inicio</a></li>
                         <li id="Inicio1" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webClientes">Clientes</a></li>
                         <li id="Inicio2" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webTecnicos">Tecnicos</a></li>
-                        <li id="Inici3" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webPedidos">Pedidos</a></li>
+                        <li id="Inici3" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webPedidos">Ordenes</a></li>
                         <li id="Inicio4" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webBuscarOrdenes">Busqueda de ordenes</a></li>
                         <li id="Inicio5" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webReporteDeActividad">Reporte de actividad</a></li>
                     </ul>
