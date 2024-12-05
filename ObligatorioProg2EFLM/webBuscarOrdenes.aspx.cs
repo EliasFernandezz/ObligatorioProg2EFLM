@@ -9,10 +9,45 @@ namespace ObligatorioProg2EFLM
 {
     public partial class webBuscarOrdenes : System.Web.UI.Page
     {
-        OrdenesDeTrabajo ordenAgregandoComentario;
+        OrdenesDeTrabajo ordenAgregandoComentario = new OrdenesDeTrabajo();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "53410991" ||
+                    BaseDeDatos.UsuarioLogeado == "5.594.951-2" || BaseDeDatos.UsuarioLogeado == "55949512")
+                {
 
+                    foreach (var Orden in BaseDeDatos.listaOrdenes)
+                    {
+                        OrdenRequerida.Add(Orden);
+                    }
+
+                    gvVerOrdenes.DataSource = OrdenRequerida;
+                    gvVerOrdenes.DataBind();
+                    gvVerOrdenes.Visible = true;
+
+                }
+                else
+                {
+                    foreach (var tecnico in BaseDeDatos.listaTecnicos)
+                    {
+                        if (tecnico.getCedula() == BaseDeDatos.UsuarioLogeado)
+                        {
+                            foreach (var orden in BaseDeDatos.listaOrdenes)
+                            {
+                                if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado())
+                                {
+                                    OrdenRequerida.Add(orden);
+                                }
+                            }
+                        }
+                    }
+                    gvVerOrdenes.DataSource = OrdenRequerida;
+                    gvVerOrdenes.DataBind();
+                    gvVerOrdenes.Visible = true;
+                }
+            }
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -30,27 +65,41 @@ namespace ObligatorioProg2EFLM
             }
         }
 
+        static List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
+
         protected void Btn_buscar(object sender, EventArgs e)
         {
+            OrdenRequerida.Clear();
 
+            int NumBusqueda = 0;
+            try
+            {
+                NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
+                if (BusquedaNum.Text == string.Empty || BusquedaNum.Text == null)
+                {
+                    throw new FormatException();
+                }
+            }
+            catch (FormatException)
+            {
+                lblOrdenNoEncontrada.Visible = true;
+            }
 
-            List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
+            lblOrdenNoEncontrada.Visible = false;
             if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "53410991" ||
                 BaseDeDatos.UsuarioLogeado == "5.594.951-2" || BaseDeDatos.UsuarioLogeado == "55949512")
             {
 
-                int NumBusqueda = Convert.ToInt32(BusquedaNum.Text);
-                foreach (var Orden in OrdenRequerida)
+                foreach (var Orden in BaseDeDatos.listaOrdenes)
                 {
                     if (NumBusqueda == Orden.GetNumOrden())
                     {
-                        OrdenRequerida.Clear();
                         OrdenRequerida.Add(Orden);
                     }
-                    else
-                    {
-
-                    }
+                }
+                if (OrdenRequerida.Count == 0)
+                {
+                    lblOrdenNoEncontrada.Visible = true;
                 }
                 gvVerOrdenes.DataSource = OrdenRequerida;
                 gvVerOrdenes.DataBind();
@@ -65,25 +114,16 @@ namespace ObligatorioProg2EFLM
                     {
                         foreach (var orden in BaseDeDatos.listaOrdenes)
                         {
-                            if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado())
+                            if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado() && NumBusqueda == orden.GetNumOrden())
                             {
                                 OrdenRequerida.Add(orden);
                             }
                         }
                     }
                 }
-                int NumBusquedaTec = Convert.ToInt32(BusquedaNum.Text);
-                foreach (var Orden in OrdenRequerida)
+                if (OrdenRequerida.Count == 0)
                 {
-                    if (NumBusquedaTec == Orden.GetNumOrden())
-                    {
-                        OrdenRequerida.Clear();
-                        OrdenRequerida.Add(Orden);
-                    }
-                    else
-                    {
-
-                    }
+                    lblOrdenNoEncontrada.Visible = true;
                 }
                 gvVerOrdenes.DataSource = OrdenRequerida;
                 gvVerOrdenes.DataBind();
@@ -93,8 +133,14 @@ namespace ObligatorioProg2EFLM
 
         protected void clickTextAreaComentario(object sender, CommandEventArgs e)
         {
-            controlesAgregarComentario.Visible = true;
-            ordenAgregandoComentario = BaseDeDatos.listaOrdenes[Convert.ToInt32(e.CommandArgument)];
+            foreach (var tecnico in BaseDeDatos.listaTecnicos)
+            {
+                if (tecnico.getCedula() == BaseDeDatos.UsuarioLogeado)
+                {
+                    controlesAgregarComentario.Visible = true;
+                }
+            }
+            ordenAgregandoComentario = OrdenRequerida[Convert.ToInt32(e.CommandArgument)];
         }
 
         protected void clickAgregarComentario(object sender, CommandEventArgs e)
@@ -102,7 +148,8 @@ namespace ObligatorioProg2EFLM
 
             Comentarios Comentario = new Comentarios(txtComentarioAgregado.Text);
             ordenAgregandoComentario.agregarComentarios(Comentario);
-
+            txtComentarioAgregado.Text = string.Empty;
+            controlesAgregarComentario.Visible = false;
             for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
             {
 

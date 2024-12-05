@@ -48,11 +48,12 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li id="Inicio" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webInicio">Inicio</a></li>
-                        <li id="Inicio1" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webClientes">Clientes</a></li>
-                        <li id="Inicio2" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webTecnicos">Tecnicos</a></li>
-                        <li id="Inici3" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webPedidos">Ordenes</a></li>
-                        <li id="Inicio4" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webBuscarOrdenes">Busqueda de ordenes</a></li>
-                        <li id="Inicio5" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webReporteDeActividad">Reporte de actividad</a></li>
+                        <li id="Clientes" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webClientes">Clientes</a></li>
+                        <li id="Tecnicos" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webTecnicos">Tecnicos</a></li>
+                        <li id="Ordenes" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webPedidos">Ordenes</a></li>
+                        <li id="BusquedaDeOrdenes" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webBuscarOrdenes">Busqueda de ordenes</a></li>
+                        <li id="ReporteDeActividad" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webReporteDeActividad">Reporte de actividad</a></li>
+                        <li id="LogOut" visible="true" class="nav-item"><a class="nav-link" runat="server" href="~/webLogin">Log Out</a></li>
                     </ul>
                 </div>
             </div>

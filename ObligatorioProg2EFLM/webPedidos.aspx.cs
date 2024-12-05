@@ -39,7 +39,7 @@ namespace ObligatorioProg2EFLM
             string tecnicoSeleccionado = cboTecnicoAsociado.SelectedValue;
             string descripcion = txtDescripcionProblema.Value;
             string estado = cboEstado.SelectedValue;
-            
+
 
 
 
@@ -56,7 +56,7 @@ namespace ObligatorioProg2EFLM
                 lblErrorIngreso.Visible = false;
                 borrarCampos();
 
-                OrdenesDeTrabajo nuevaOrden = new OrdenesDeTrabajo(BaseDeDatos.listaOrdenes.Count + 1, clienteSeleccionado, tecnicoSeleccionado, descripcion ,DateTime.Now, estado);
+                OrdenesDeTrabajo nuevaOrden = new OrdenesDeTrabajo(BaseDeDatos.listaOrdenes.Count + 1, clienteSeleccionado, tecnicoSeleccionado, descripcion, DateTime.Now, estado);
                 BaseDeDatos.listaOrdenes.Add(nuevaOrden);
                 recargarGvOrdenes();
             }
@@ -99,16 +99,18 @@ namespace ObligatorioProg2EFLM
         {
             GridViewRow fila = gvOrdenes.Rows[e.RowIndex];
 
-            string estadoActualizado = (fila.Cells[5].Controls[0] as DropDownList).SelectedValue;
-
-            BaseDeDatos.listaOrdenes[e.RowIndex].SetEstado(estadoActualizado);
-            if (BaseDeDatos.listaOrdenes[e.RowIndex].GetEstado() == "Completada")
+            string estadoActualizado = ((TextBox)fila.Cells[5].Controls[0]).Text;
+            if (estadoActualizado == "Pendiente" || (estadoActualizado == "En Progreso") || (estadoActualizado == "Completada"))
             {
-                BaseDeDatos.listaOrdenes[e.RowIndex].SetFechaFinalizada();
-            }
+                BaseDeDatos.listaOrdenes[e.RowIndex].SetEstado(estadoActualizado);
+                if (BaseDeDatos.listaOrdenes[e.RowIndex].GetEstado() == "Completada")
+                {
+                    BaseDeDatos.listaOrdenes[e.RowIndex].SetFechaFinalizada();
+                }
 
-            gvOrdenes.EditIndex = -1;
-            recargarGvOrdenes();
+            }
+                gvOrdenes.EditIndex = -1;
+                recargarGvOrdenes();
         }
 
         protected void clickVerComentarios(object sender, CommandEventArgs e)

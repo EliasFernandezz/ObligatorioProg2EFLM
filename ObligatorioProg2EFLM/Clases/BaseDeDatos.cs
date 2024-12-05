@@ -46,6 +46,10 @@ namespace ObligatorioProg2EFLM.Clases
 
         public static bool validarCedula(string cedula)
         {
+            if (cedula == "5.341.099-1" || (cedula == "53410991") || (cedula == "5.594.951-2") || (cedula == "55949512"))
+            {
+                return false;
+            }
             cedula = cedula.Trim();
             cedula = cedula.Replace(".", ""); //se quitan los espacios vacios, puntos y guiones de la cedula para que conserve un largo de 8
             cedula = cedula.Replace("-", "");

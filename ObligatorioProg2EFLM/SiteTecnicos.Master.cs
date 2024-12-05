@@ -7,15 +7,9 @@ namespace ObligatorioProg2EFLM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < BaseDeDatos.listaTecnicos.Count; i++)
-            {
-
-                if (BaseDeDatos.UsuarioLogeado == BaseDeDatos.listaTecnicos[i].getCedula())
-                {
-
-                }
-
-            }
+            
         }
+
+       
     }
 }
