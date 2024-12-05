@@ -102,6 +102,10 @@ namespace ObligatorioProg2EFLM
             string estadoActualizado = (fila.Cells[5].Controls[0] as DropDownList).SelectedValue;
 
             BaseDeDatos.listaOrdenes[e.RowIndex].SetEstado(estadoActualizado);
+            if (BaseDeDatos.listaOrdenes[e.RowIndex].GetEstado() == "Completada")
+            {
+                BaseDeDatos.listaOrdenes[e.RowIndex].SetFechaFinalizada();
+            }
 
             gvOrdenes.EditIndex = -1;
             recargarGvOrdenes();

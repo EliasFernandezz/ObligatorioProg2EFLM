@@ -40,7 +40,7 @@
     <br />
 
     <asp:Label ID="lblEdicion" runat="server" Font-Size="Small" Text="Editando..." Visible="false" ForeColor="green"></asp:Label>
-    <asp:Label ID="lblErrorEdicion" runat="server" Font-Size="Small" Visible="false" ForeColor="red" />
+    <asp:Label ID="lblErrorEdicion" runat="server" Font-Size="Small" Text="" Visible="false" ForeColor="red"></asp:Label>
 
     <br />
     <asp:GridView ID="gvTecnicos" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red"
