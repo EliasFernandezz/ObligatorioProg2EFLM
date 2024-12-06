@@ -13,18 +13,23 @@
         <h1>Busqueda de órdenes
         </h1>
     </header>
+
     <div id="DivBusqueda" runat="server">
-        <div runat="server" ID="DivInvisibleParaTecnico" Visible="true">
+        <div runat="server" id="DivInvisibleParaTecnico" visible="true">
 
             <asp:Label runat="server">Ingrese el numero de orden que desea ver</asp:Label>
             <asp:TextBox type="number" ID="BusquedaNum" runat="server"></asp:TextBox>
         </div>
+        <br />
         <asp:Button runat="server" ID="Btn_Situacional" Text="Buscar" OnClick="Btn_buscar" />
         <asp:Label runat="server" ID="lblOrdenNoEncontrada" ForeColor="Red" Visible="false">La orden que desea ver, ha sido eliminada o no se ha creado aun.</asp:Label>
     </div>
+    <br />
 
     <asp:GridView ID="gvVerOrdenes" Visible="false" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red">
         <Columns>
+
+            <asp:BoundField DataField="NumOrden" HeaderText="N° de orden" />
 
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
 
@@ -45,6 +50,5 @@
         <asp:TextBox ID="txtComentarioAgregado" runat="server" TextMode="MultiLine" placeholder="ingrese un comentario"></asp:TextBox>
         <asp:Button ID="btnAgregarComentario" runat="server" Text="Agregar" OnCommand="clickAgregarComentario" CausesValidation="false" />
     </div>
-    <!-- necesario hacer los comentarios del tecnico !-->
 
 </asp:Content>

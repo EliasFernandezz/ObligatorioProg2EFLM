@@ -51,7 +51,7 @@ namespace ObligatorioProg2EFLM.Clases
 
         public void agregarComentarios(Comentarios comentario)
         {
-            Comentarios.Add(comentario);
+            this.Comentarios.Add(comentario);
         }
     }
 }

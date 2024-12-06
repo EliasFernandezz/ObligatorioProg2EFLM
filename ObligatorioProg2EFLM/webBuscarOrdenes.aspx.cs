@@ -12,8 +12,10 @@ namespace ObligatorioProg2EFLM
         OrdenesDeTrabajo ordenAgregandoComentario = new OrdenesDeTrabajo();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
+
                 if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "53410991" ||
                     BaseDeDatos.UsuarioLogeado == "5.594.951-2" || BaseDeDatos.UsuarioLogeado == "55949512")
                 {
@@ -23,10 +25,9 @@ namespace ObligatorioProg2EFLM
                         OrdenRequerida.Add(Orden);
                     }
 
-                    gvVerOrdenes.DataSource = OrdenRequerida;
-                    gvVerOrdenes.DataBind();
-                    gvVerOrdenes.Visible = true;
-
+                        gvVerOrdenes.DataSource = OrdenRequerida;
+                        gvVerOrdenes.DataBind();
+                        gvVerOrdenes.Visible = true;
                 }
                 else
                 {
@@ -133,6 +134,8 @@ namespace ObligatorioProg2EFLM
 
         protected void clickTextAreaComentario(object sender, CommandEventArgs e)
         {
+            GridViewRow fila = gvVerOrdenes.Rows[Convert.ToInt32(e.CommandArgument)];
+
             foreach (var tecnico in BaseDeDatos.listaTecnicos)
             {
                 if (tecnico.getCedula() == BaseDeDatos.UsuarioLogeado)
@@ -140,14 +143,13 @@ namespace ObligatorioProg2EFLM
                     controlesAgregarComentario.Visible = true;
                 }
             }
-            ordenAgregandoComentario = OrdenRequerida[Convert.ToInt32(e.CommandArgument)];
+            ordenAgregandoComentario.SetNumOrden((OrdenRequerida[Convert.ToInt32(fila.Cells[0].Text) - 1]).GetNumOrden());
         }
 
         protected void clickAgregarComentario(object sender, CommandEventArgs e)
         {
 
             Comentarios Comentario = new Comentarios(txtComentarioAgregado.Text);
-            ordenAgregandoComentario.agregarComentarios(Comentario);
             txtComentarioAgregado.Text = string.Empty;
             controlesAgregarComentario.Visible = false;
             for (int i = 0; i < BaseDeDatos.listaOrdenes.Count; i++)
@@ -156,7 +158,7 @@ namespace ObligatorioProg2EFLM
                 if (BaseDeDatos.listaOrdenes[i].GetNumOrden() == ordenAgregandoComentario.GetNumOrden())
                 {
 
-                    BaseDeDatos.listaOrdenes[i] = ordenAgregandoComentario;
+                    BaseDeDatos.listaOrdenes[i].agregarComentarios(Comentario);
                 }
 
             }

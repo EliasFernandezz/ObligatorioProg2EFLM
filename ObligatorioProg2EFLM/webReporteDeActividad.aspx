@@ -31,6 +31,9 @@
         </Columns>
     </asp:GridView>
 
+    <br />
+    <br />
+
     <asp:GridView ID="gvOrdenesCompletas" runat="server" AutoGenerateColumns="false" Width="95%" BorderWidth="2" BorderColor="Red">
         <Columns>
 
