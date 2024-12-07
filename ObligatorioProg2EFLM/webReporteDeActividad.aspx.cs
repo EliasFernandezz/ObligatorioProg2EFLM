@@ -15,7 +15,7 @@ namespace ObligatorioProg2EFLM
                 DateTime hoy = DateTime.Now;
                 foreach (OrdenesDeTrabajo Orden in BaseDeDatos.listaOrdenes)
                 {
-                    if (Orden.GetFechaFinalizada() > hoy.AddMonths(-1))
+                    if (Orden.GetEstado() == "Completada" && Orden.GetFechaFinalizada() > hoy.AddMonths(-1))
                     {
                         ordenesDeTrabajos.Add(Orden);
                     }
