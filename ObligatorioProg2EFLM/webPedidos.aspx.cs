@@ -55,8 +55,16 @@ namespace ObligatorioProg2EFLM
             {
                 lblErrorIngreso.Visible = false;
                 borrarCampos();
+                int NumOrden = 0;
+                foreach (var orden in BaseDeDatos.listaOrdenes)
+                {
+                    if (NumOrden <= orden.GetNumOrden())
+                    {
+                        NumOrden = orden.GetNumOrden() + 1;
+                    }
+                }
 
-                OrdenesDeTrabajo nuevaOrden = new OrdenesDeTrabajo(BaseDeDatos.listaOrdenes.Count + 1, clienteSeleccionado, tecnicoSeleccionado, descripcion, DateTime.Now, estado);
+                OrdenesDeTrabajo nuevaOrden = new OrdenesDeTrabajo(NumOrden, clienteSeleccionado, tecnicoSeleccionado, descripcion, DateTime.Now, estado);
                 BaseDeDatos.listaOrdenes.Add(nuevaOrden);
                 recargarGvOrdenes();
             }

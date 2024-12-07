@@ -137,7 +137,8 @@ namespace ObligatorioProg2EFLM
         public bool validarTelefono(string telefono)
         {
             long num = 0;
-            if (telefono.Length > 15 || (long.TryParse(telefono, out num)) == false)
+            
+            if (telefono.Length > 15 || telefono == null || (long.TryParse(telefono, out num)) == false)
             {
                 return false;
             }
