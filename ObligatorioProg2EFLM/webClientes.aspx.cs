@@ -210,15 +210,24 @@ namespace ObligatorioProg2EFLM
 
         public bool repeticionClienteEdicion(string cedula, string telefono, string email)
         {
-            cedula = cedula.Trim();
-            telefono = telefono.Trim();
-            email = email.Trim();
-
             bool cliRepiteCedula = false;
             bool cliRepiteTelefono = false;
             bool cliRepiteEmail = false;
 
             bool clienteRepetido = false;
+
+            cedula = cedula.Trim();
+
+            if (string.IsNullOrEmpty(telefono) == false)
+            {
+                telefono = telefono.Trim();
+            }
+
+            if (string.IsNullOrEmpty(email) == false)
+            {
+                email = email.Trim();
+            }
+
 
             for (int i = 0; i < BaseDeDatos.listaClientes.Count - 1; i++)
             {
@@ -228,13 +237,13 @@ namespace ObligatorioProg2EFLM
                     break;
                 }
 
-                if (BaseDeDatos.listaClientes[i].getTelefono() == telefono)
+                if (BaseDeDatos.listaClientes[i].getTelefono() == telefono && string.IsNullOrEmpty(telefono) == false)
                 {
                     cliRepiteTelefono = true;
                     break;
                 }
 
-                if (BaseDeDatos.listaClientes[i].getEmail() == email)
+                if (BaseDeDatos.listaClientes[i].getEmail() == email && string.IsNullOrEmpty(email) == false)
                 {
                     cliRepiteEmail = true;
                     break;
