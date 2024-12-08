@@ -69,6 +69,9 @@ namespace ObligatorioProg2EFLM
                     nombre = txtNombre.Text;
                     apellido = txtApellido.Text;
                     cedula = txtCedula.Text;
+                    direccion = txtDireccion.Text;
+                    telefono = txtTelefono.Text;
+                    email = txtEmail.Text;
 
                     cedula = BaseDeDatos.puntosGuionCedula(cedula);
 
@@ -137,8 +140,12 @@ namespace ObligatorioProg2EFLM
         public bool validarTelefono(string telefono)
         {
             long num = 0;
-            
-            if (telefono.Length > 15 || telefono == null || (long.TryParse(telefono, out num)) == false)
+
+            if (string.IsNullOrEmpty(telefono))
+            {
+                return true;
+            }
+            else if (telefono.Length > 15 || (long.TryParse(telefono, out num)) == false)
             {
                 return false;
             }
@@ -150,15 +157,24 @@ namespace ObligatorioProg2EFLM
 
         public bool repeticionCliente(string cedula, string telefono, string email)
         {
-            cedula = cedula.Trim();
-            telefono = telefono.Trim();
-            email = email.Trim();
-
             bool cliRepiteCedula = false;
             bool cliRepiteTelefono = false;
             bool cliRepiteEmail = false;
 
             bool clienteRepetido = false;
+
+                cedula = cedula.Trim();
+            
+
+            if (string.IsNullOrEmpty(telefono) == false)
+            {
+                telefono = telefono.Trim();
+            }
+
+            if (string.IsNullOrEmpty(email) == false)
+            {
+                email = email.Trim();
+            }
 
             for (int i = 0; i < BaseDeDatos.listaClientes.Count; i++)
             {
@@ -168,13 +184,13 @@ namespace ObligatorioProg2EFLM
                     break;
                 }
 
-                if (BaseDeDatos.listaClientes[i].getTelefono() == telefono)
+                if (BaseDeDatos.listaClientes[i].getTelefono() == telefono && string.IsNullOrEmpty(telefono) == false)
                 {
                     cliRepiteTelefono = true;
                     break;
                 }
 
-                if (BaseDeDatos.listaClientes[i].getEmail() == email)
+                if (BaseDeDatos.listaClientes[i].getEmail() == email && string.IsNullOrEmpty(email) == false)
                 {
                     cliRepiteEmail = true;
                     break;
@@ -250,94 +266,94 @@ namespace ObligatorioProg2EFLM
             }
         }
 
-            protected void editarCliente(object sender, GridViewEditEventArgs e)
-            {
-                lblErrorIngreso.Visible = false;
-                lblErrorValidacion.Visible = false;
-                lblErrorEdicion.Visible = false;
+        protected void editarCliente(object sender, GridViewEditEventArgs e)
+        {
+            lblErrorIngreso.Visible = false;
+            lblErrorValidacion.Visible = false;
+            lblErrorEdicion.Visible = false;
 
-                gvClientes.EditIndex = e.NewEditIndex;
-                recargarGvClientes();
-                lblEdicion.Visible = true;
-            }
+            gvClientes.EditIndex = e.NewEditIndex;
+            recargarGvClientes();
+            lblEdicion.Visible = true;
+        }
 
-            protected void cancelarEdicionCliente(object sender, GridViewCancelEditEventArgs e)
+        protected void cancelarEdicionCliente(object sender, GridViewCancelEditEventArgs e)
+        {
+            lblErrorIngreso.Visible = false;
+            lblErrorValidacion.Visible = false;
+            lblErrorEdicion.Visible = false;
+
+            gvClientes.EditIndex = -1;
+            recargarGvClientes();
+            lblEdicion.Visible = false;
+        }
+
+        protected void actualizarCliente(object sender, GridViewUpdateEventArgs e)
+        {
+            lblErrorIngreso.Visible = false;
+            lblErrorValidacion.Visible = false;
+            lblErrorEdicion.Visible = false;
+
+            GridViewRow fila = gvClientes.Rows[e.RowIndex];
+
+            string nombreActualizado = (fila.Cells[0].Controls[0] as TextBox).Text;
+            string apellidoActualizado = (fila.Cells[1].Controls[0] as TextBox).Text;
+            string cedulaActualizada = (fila.Cells[2].Controls[0] as TextBox).Text;
+            string direccionActualizada = (fila.Cells[3].Controls[0] as TextBox).Text;
+            string telefonoActualizado = (fila.Cells[4].Controls[0] as TextBox).Text;
+            string emailActualizado = (fila.Cells[5].Controls[0] as TextBox).Text;
+
+            cedulaActualizada = BaseDeDatos.puntosGuionCedula(cedulaActualizada);
+
+            bool cedulaValida = BaseDeDatos.validarCedula(cedulaActualizada);
+            bool telefonoValido = validarTelefono(telefonoActualizado);
+            bool clienteRepetido = repeticionClienteEdicion(cedulaActualizada, telefonoActualizado, emailActualizado);
+
+            if (cedulaValida == true && telefonoValido == true && clienteRepetido == false)
             {
-                lblErrorIngreso.Visible = false;
-                lblErrorValidacion.Visible = false;
-                lblErrorEdicion.Visible = false;
+                BaseDeDatos.listaClientes[e.RowIndex].setNombre(nombreActualizado);
+                BaseDeDatos.listaClientes[e.RowIndex].setApellido(apellidoActualizado);
+                BaseDeDatos.listaClientes[e.RowIndex].setCedula(cedulaActualizada);
+                BaseDeDatos.listaClientes[e.RowIndex].setDireccion(direccionActualizada);
+                BaseDeDatos.listaClientes[e.RowIndex].setTelefono(telefonoActualizado);
+                BaseDeDatos.listaClientes[e.RowIndex].setEmail(emailActualizado);
 
                 gvClientes.EditIndex = -1;
                 recargarGvClientes();
                 lblEdicion.Visible = false;
             }
-
-            protected void actualizarCliente(object sender, GridViewUpdateEventArgs e)
+            else if (cedulaValida == false && telefonoValido == false && clienteRepetido == true)
             {
-                lblErrorIngreso.Visible = false;
-                lblErrorValidacion.Visible = false;
-                lblErrorEdicion.Visible = false;
-
-                GridViewRow fila = gvClientes.Rows[e.RowIndex];
-
-                string nombreActualizado = (fila.Cells[0].Controls[0] as TextBox).Text;
-                string apellidoActualizado = (fila.Cells[1].Controls[0] as TextBox).Text;
-                string cedulaActualizada = (fila.Cells[2].Controls[0] as TextBox).Text;
-                string direccionActualizada = (fila.Cells[3].Controls[0] as TextBox).Text;
-                string telefonoActualizado = (fila.Cells[4].Controls[0] as TextBox).Text;
-                string emailActualizado = (fila.Cells[5].Controls[0] as TextBox).Text;
-
-                cedulaActualizada = BaseDeDatos.puntosGuionCedula(cedulaActualizada);
-
-                bool cedulaValida = BaseDeDatos.validarCedula(cedulaActualizada);
-                bool telefonoValido = validarTelefono(telefonoActualizado);
-                bool clienteRepetido = repeticionClienteEdicion(cedulaActualizada, telefonoActualizado, emailActualizado);
-
-                if (cedulaValida == true && telefonoValido == true && clienteRepetido == false)
-                {
-                    BaseDeDatos.listaClientes[e.RowIndex].setNombre(nombreActualizado);
-                    BaseDeDatos.listaClientes[e.RowIndex].setApellido(apellidoActualizado);
-                    BaseDeDatos.listaClientes[e.RowIndex].setCedula(cedulaActualizada);
-                    BaseDeDatos.listaClientes[e.RowIndex].setDireccion(direccionActualizada);
-                    BaseDeDatos.listaClientes[e.RowIndex].setTelefono(telefonoActualizado);
-                    BaseDeDatos.listaClientes[e.RowIndex].setEmail(emailActualizado);
-
-                    gvClientes.EditIndex = -1;
-                    recargarGvClientes();
-                    lblEdicion.Visible = false;
-                }
-                else if (cedulaValida == false && telefonoValido == false && clienteRepetido == true)
-                {
-                    gvClientes.EditIndex = -1;
-                    recargarGvClientes();
-                    lblEdicion.Visible = false;
-                    lblErrorEdicion.Text = "Cedula invalida, telefono mayor a 15 digitos y cliente repetido";
-                    lblErrorEdicion.Visible = true;
-                }
-                else if (cedulaValida == false)
-                {
-                    gvClientes.EditIndex = -1;
-                    recargarGvClientes();
-                    lblEdicion.Visible = false;
-                    lblErrorEdicion.Text = "La cedula no es valida";
-                    lblErrorEdicion.Visible = true;
-                }
-                else if (telefonoValido == false)
-                {
-                    gvClientes.EditIndex = -1;
-                    recargarGvClientes();
-                    lblEdicion.Visible = false;
-                    lblErrorEdicion.Text = "El telefono no puede tener letras o ser mayor a 15 digitos";
-                    lblErrorEdicion.Visible = true;
-                }
-                else if (clienteRepetido == true)
-                {
-                    gvClientes.EditIndex = -1;
-                    recargarGvClientes();
-                    lblEdicion.Visible = false;
-                    lblErrorEdicion.Text = "Este cliente ya existe";
-                    lblErrorEdicion.Visible = true;
-                }
+                gvClientes.EditIndex = -1;
+                recargarGvClientes();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "Cedula invalida, telefono mayor a 15 digitos y cliente repetido";
+                lblErrorEdicion.Visible = true;
+            }
+            else if (cedulaValida == false)
+            {
+                gvClientes.EditIndex = -1;
+                recargarGvClientes();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "La cedula no es valida";
+                lblErrorEdicion.Visible = true;
+            }
+            else if (telefonoValido == false)
+            {
+                gvClientes.EditIndex = -1;
+                recargarGvClientes();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "El telefono no puede tener letras o ser mayor a 15 digitos";
+                lblErrorEdicion.Visible = true;
+            }
+            else if (clienteRepetido == true)
+            {
+                gvClientes.EditIndex = -1;
+                recargarGvClientes();
+                lblEdicion.Visible = false;
+                lblErrorEdicion.Text = "Este cliente ya existe";
+                lblErrorEdicion.Visible = true;
             }
         }
     }
+}

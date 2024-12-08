@@ -14,18 +14,24 @@ namespace ObligatorioProg2EFLM
         }
         protected void Logearme_Click(object sender, EventArgs e)
         {
-            if ((txtCedula.Text == "5.341.099-1" && txtContraseña.Text == "5.341.099-1") || (txtCedula.Text == "53410991" && txtContraseña.Text == "53410991")
-               || (txtCedula.Text == "5.594.951-2" && txtContraseña.Text == "5.594.951-2") || (txtCedula.Text == "55949512" && txtContraseña.Text == "55949512")) 
+            string cedula = BaseDeDatos.puntosGuionCedula(txtCedula.Text);
+            string contraseña = BaseDeDatos.puntosGuionCedula(txtContraseña.Text);
+
+            if ((cedula == "5.341.099-1" && contraseña == "5.341.099-1") || (cedula == "5.594.951-2" && contraseña == "5.594.951-2"))
             {
-                BaseDeDatos.UsuarioLogeado = txtCedula.Text;
+                BaseDeDatos.UsuarioLogeado = cedula;
                 Response.Redirect("webInicio.aspx");
             }
             for (int i = 0; i < BaseDeDatos.listaTecnicos.Count; i++)
             {
-                if (txtCedula.Text == BaseDeDatos.listaTecnicos[i].getCedula() && txtContraseña.Text == BaseDeDatos.listaTecnicos[i].getCedula())
+                if (cedula == BaseDeDatos.listaTecnicos[i].getCedula() && contraseña == BaseDeDatos.listaTecnicos[i].getCedula())
                 {
-                    BaseDeDatos.UsuarioLogeado = txtCedula.Text;
+                    BaseDeDatos.UsuarioLogeado = cedula;
                     Response.Redirect("webBuscarOrdenes.aspx");
+                }
+                else
+                {
+                    lblErrorIngreso.Visible = true;
                 }
             }
         }

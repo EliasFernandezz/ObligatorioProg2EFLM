@@ -50,8 +50,9 @@ namespace ObligatorioProg2EFLM.Clases
             {
                 return false;
             }
+
             cedula = cedula.Trim();
-            cedula = cedula.Replace(".", ""); //se quitan los espacios vacios, puntos y guiones de la cedula para que conserve un largo de 8
+            cedula = cedula.Replace(".", ""); //se quitan los espacios vacios, puntos y guiones de la cedula para que conserve un largo de 8 digitos
             cedula = cedula.Replace("-", "");
 
             if (cedula.Length != 8)

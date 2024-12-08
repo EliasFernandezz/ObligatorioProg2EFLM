@@ -10,43 +10,51 @@ namespace ObligatorioProg2EFLM
     public partial class webBuscarOrdenes : System.Web.UI.Page
     {
         OrdenesDeTrabajo ordenAgregandoComentario = new OrdenesDeTrabajo();
+        static List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
 
-                if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "53410991" ||
-                    BaseDeDatos.UsuarioLogeado == "5.594.951-2" || BaseDeDatos.UsuarioLogeado == "55949512")
+                if (BaseDeDatos.UsuarioLogeado == "5.341.099-1" || BaseDeDatos.UsuarioLogeado == "5.594.951-2")
                 {
 
-                    foreach (var Orden in BaseDeDatos.listaOrdenes)
+                    if (OrdenRequerida.Count < BaseDeDatos.listaOrdenes.Count)
                     {
-                        OrdenRequerida.Add(Orden);
+                        foreach (OrdenesDeTrabajo Orden in BaseDeDatos.listaOrdenes)
+                        {
+                            OrdenRequerida.Add(Orden);
+                        }
+
+                        RecargarGvOrdenes();
                     }
 
-                        gvVerOrdenes.DataSource = OrdenRequerida;
-                        gvVerOrdenes.DataBind();
-                        gvVerOrdenes.Visible = true;
+                    RecargarGvOrdenes();
                 }
+
                 else
                 {
-                    foreach (var tecnico in BaseDeDatos.listaTecnicos)
+                    foreach (Tecnico tecnico in BaseDeDatos.listaTecnicos)
                     {
                         if (tecnico.getCedula() == BaseDeDatos.UsuarioLogeado)
                         {
-                            foreach (var orden in BaseDeDatos.listaOrdenes)
+                            if (OrdenRequerida.Count < BaseDeDatos.listaOrdenes.FindAll(orden => orden.GetTecnicoAsociado() == tecnico.getCedula()).Count)
                             {
-                                if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado())
+                                foreach (OrdenesDeTrabajo orden in BaseDeDatos.listaOrdenes)
                                 {
-                                    OrdenRequerida.Add(orden);
+                                    if (BaseDeDatos.UsuarioLogeado == orden.GetTecnicoAsociado())
+                                    {
+                                        OrdenRequerida.Add(orden);
+                                    }
                                 }
+                                RecargarGvOrdenes();
                             }
+
+                            RecargarGvOrdenes();
                         }
                     }
-                    gvVerOrdenes.DataSource = OrdenRequerida;
-                    gvVerOrdenes.DataBind();
-                    gvVerOrdenes.Visible = true;
                 }
             }
         }
@@ -66,7 +74,13 @@ namespace ObligatorioProg2EFLM
             }
         }
 
-        static List<OrdenesDeTrabajo> OrdenRequerida = new List<OrdenesDeTrabajo>();
+        protected void RecargarGvOrdenes()
+        {
+            gvVerOrdenes.DataSource = OrdenRequerida;
+            gvVerOrdenes.DataBind();
+            gvVerOrdenes.Visible = true;
+        }
+
 
         protected void Btn_buscar(object sender, EventArgs e)
         {
