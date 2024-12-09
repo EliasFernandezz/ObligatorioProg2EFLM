@@ -14,7 +14,7 @@ namespace ObligatorioProg2EFLM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            OrdenRequerida.Clear();
             if (!IsPostBack)
             {
 
